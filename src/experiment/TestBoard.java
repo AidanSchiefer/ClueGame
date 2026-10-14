@@ -41,7 +41,7 @@ public class TestBoard {
 	}
 
 	// Gets the targets last created by calcTargets
-	//we arent going to use this right now
+	// we aren't going to use this right now
 	public Set<TestBoardCell> getTargets(){
 		return _targetCells;
 	}
