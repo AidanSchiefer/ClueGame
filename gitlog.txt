@@ -1,0 +1,68 @@
+commit d66aaa5d6442b139b7f87ab5e9c0f064d38e9f9f
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Wed Oct 14 17:36:14 2026 -0600
+
+    updated occupation target function name
+
+commit e5db567717ce2bccc3c7b3d85b4ae875933ab747
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Wed Oct 14 17:35:45 2026 -0600
+
+    feat: added target tests
+
+commit 45db9776739a6383581a78ab7c202df4af7292ad
+Author: Chris <chuss689@gmail.com>
+Date:   Wed Oct 14 15:31:38 2026 -0600
+
+    quick comment
+
+commit 96cea03a3f6c90fb6620af80b303e6100edbdc01
+Author: Chris <chuss689@gmail.com>
+Date:   Wed Oct 14 15:14:00 2026 -0600
+
+    fixed testBoard and TestBoardCell and implemented all adjacency tests
+
+commit bd6985c88252ebf185541bb84035ec87d78b04ea
+Merge: a6bb801 4f71a79
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Tue Oct 13 21:40:33 2026 -0600
+
+    Merge branch 'main' of https://github.com/AidanSchiefer/CluePaths1
+    added shell code for BoardTestsExp
+
+commit a6bb801229ca47c4696ee9c93df69665af4980f9
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Tue Oct 13 21:40:04 2026 -0600
+
+    Added shell code for BoardTestExp. To be fully implemented'
+    '
+
+commit 4f71a7936892cd6c81d65c91a7fa3a135c11d52b
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Tue Oct 13 21:32:57 2026 -0600
+
+    Updated .gitignore
+
+commit a1046fc68d85de426581fa4b7854b028030af2b9
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Tue Oct 13 21:32:28 2026 -0600
+
+    added gitignore
+
+commit cbf7235e5882c7ae2966cbe691b9451efc734a16
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Tue Oct 13 21:29:31 2026 -0600
+
+    feat: added shell code for TestBoard
+
+commit 95a186ab9b480eb70d2efe14af071bf79c94ea37
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Tue Oct 13 21:22:48 2026 -0600
+
+    feat: shell functionality for TestBoardCell
+
+commit 5d726dfecf4a02260c20bb07f43147cfe5b5fa63
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Tue Oct 13 21:02:36 2026 -0600
+
+    Initial commit with classes and packages
