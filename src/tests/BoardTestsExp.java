@@ -219,7 +219,7 @@ public class BoardTestsExp {
 	
 	// Test to determine if an occupied square is unavailable
 	@Test
-	public void testOccupation() {
+	public void testOccupationTargets() {
 		// Create the starting cell
 		TestBoardCell cell = board.getCell(0, 0);
 		
