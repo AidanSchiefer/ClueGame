@@ -9,30 +9,47 @@ public class TestBoardCell {
 	private int _boardRow;
 	private int _boardColumn;
 	private Set<TestBoardCell> _adjacencyList;
-	
+
 	// Constructor
 	public TestBoardCell(int row, int column) {
 		_boardRow = row;
 		_boardColumn = column;
+		_adjacencyList = new HashSet<>();
 	}
-	
+
 	// Setter method to add to the adjacency list
-	void addAdjacency(TestBoardCell cell) {
-		
+	//to be implemented later
+	public void addAdjacency(TestBoardCell cell) {
+
 	}
-	
+
 	// Getter method to get the adjacency list
-	Set<TestBoardCell> getAdjList(){
+	public Set<TestBoardCell> getAdjList(){
 		return _adjacencyList;
 	}
-	
+
 	// Setter method to set a room status
-	void setRoom(boolean isRoom) {
-		
+	public void setRoom(boolean isRoom) {
+
 	}
-	
+
+	public boolean isRoom() {
+		return false;
+	}
+
+	public void setOccupied(boolean occupied) {
+	}
+
 	// Getter method to determine if a room is occupied
-	boolean getOccupied() {
+	public boolean getOccupied() {
 		return true;
+	}
+
+	public int getRow() {
+		return _boardRow;
+	}
+
+	public int getColumn() {
+		return _boardColumn;
 	}
 }
