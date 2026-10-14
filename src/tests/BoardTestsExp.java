@@ -53,6 +53,7 @@ public class BoardTestsExp {
 		assertTrue(adjacent.contains(board.getCell(1, 2)));
 	}
 
+	//tests adjacency at left corner
 	@Test
 	public void testAdjacencyLeftCorner() {
 		Set<TestBoardCell> adjacent = board.getCell(3, 0).getAdjList();
