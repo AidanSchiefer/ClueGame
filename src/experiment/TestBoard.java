@@ -24,6 +24,7 @@ public class TestBoard {
 		}
 	}
 
+	// TODO
 	// Method to calculate legal targets for a move from startCell of length pathLength
 	//to be implemented later
 	public void calcTargets(TestBoardCell startCell, int pathLength) {
