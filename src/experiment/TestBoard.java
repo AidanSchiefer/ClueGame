@@ -25,6 +25,32 @@ public class TestBoard {
 				_testBoard.add(new TestBoardCell(row, col));
 			}
 		}
+
+		// Build adjacency lists after all cells are created
+		for (TestBoardCell cell : _testBoard) {
+			int row = cell.getRow();
+			int col = cell.getColumn();
+
+			// Neighbor above
+			if (row > 0) {
+				cell.addAdjacency(getCell(row - 1, col));
+			}
+
+			// Neighbor below
+			if (row < 3) {
+				cell.addAdjacency(getCell(row + 1, col));
+			}
+
+			// Neighbor to the left
+			if (col > 0) {
+				cell.addAdjacency(getCell(row, col - 1));
+			}
+
+			// Neighbor to the right
+			if (col < 3) {
+				cell.addAdjacency(getCell(row, col + 1));
+			}
+		}
 	}
 
 	// TODO
@@ -45,20 +71,20 @@ public class TestBoard {
 		 * 
 		 * 	remove adjCell from visited list
 		 * */
-		
+
 		// Get the adjacency list from the startCell
 		Set<TestBoardCell> adjList = startCell.getAdjList();
-		
+
 		// Loop through each cell in the adjacency list
 		for (TestBoardCell adjCell: adjList){
 			// If already in visited list, skip the rest of the loop
 			if (_visited.contains(adjCell)) {
 				continue;
 			}
-			
+
 			// Add adjCell to the visited list
 			_visited.add(adjCell);
-			
+
 			// If numSteps == 1. add adjCell to targets
 			if (pathLength == 1) {
 				_targetCells.add(adjCell);
@@ -67,7 +93,7 @@ public class TestBoard {
 			else {
 				calcTargets(adjCell, pathLength - 1);
 			}
-			
+
 			// Remove adjCell from the visited list
 			_visited.remove(adjCell);
 		}

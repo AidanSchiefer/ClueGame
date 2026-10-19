@@ -23,7 +23,7 @@ public class TestBoardCell {
 	// Setter method to add to the adjacency list
 	//to be implemented later
 	public void addAdjacency(TestBoardCell cell) {
-
+		_adjacencyList.add(cell);
 	}
 
 	// Getter method to get the adjacency list
