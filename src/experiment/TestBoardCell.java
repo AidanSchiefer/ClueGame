@@ -9,6 +9,8 @@ public class TestBoardCell {
 	private int _boardRow;
 	private int _boardColumn;
 	private Set<TestBoardCell> _adjacencyList;
+	private boolean _isRoom = false;
+	private boolean _isOccupied = false;
 
 	// Constructor
 	public TestBoardCell(int row, int column) {
@@ -31,23 +33,24 @@ public class TestBoardCell {
 
 	// TODO
 	// Setter method to set a room status
-	public void setRoom(boolean isRoom) {
-
+	public void setRoom(boolean roomStatus) {
+		_isRoom = roomStatus;
 	}
 
 	// TODO
 	public boolean isRoom() {
-		return false;
+		return _isRoom;
 	}
 
 	// TODO
-	public void setOccupied(boolean occupied) {
+	public void setOccupied(boolean occupiedStatus) {
+		_isOccupied = occupiedStatus;
 	}
 
 	// TODO
 	// Getter method to determine if a room is occupied
 	public boolean getOccupied() {
-		return true;
+		return _isOccupied;
 	}
 
 	public int getRow() {
