@@ -207,18 +207,14 @@ public class BoardTestsExp {
 		// Set one target to be a room
 		board.getCell(0, 1).setRoom(true);
 		
-		// Roll a one
-		board.calcTargets(cell, 1);
 		
-		// Get the target list
+		board.calcTargets(cell, 2);
 		Set<TestBoardCell> targets = board.getTargets();
 		
-		// Test to see if the target set is the right size
-		assertEquals(2, targets.size());
-		
-		// Test to see if the targets match
+		assertEquals(3, targets.size());
 		assertTrue(targets.contains(board.getCell(0, 1)));
-		assertTrue(targets.contains(board.getCell(1, 0)));
+		assertTrue(targets.contains(board.getCell(1, 1)));
+		assertTrue(targets.contains(board.getCell(2, 0)));
 	}
 	
 	// Test to determine if an occupied square is unavailable
