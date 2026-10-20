@@ -53,45 +53,43 @@ public class TestBoard {
 		}
 	}
 
-	// TODO
 	// Method to calculate legal targets for a move from startCell of length pathLength
-	//to be implemented later
 	public void calcTargets(TestBoardCell startCell, int pathLength) {
-		/*
-		 * Pseudocode for this algorithm
-		 * 
-		 * Get the adjacency list from the startCell
-		 * 
-		 * for each adjCell in Adjacency list
-		 * 	if already visited in list, skip the rest of the loop
-		 * 
-		 * 	add adjCell to visited list
-		 * 	if numSteps == 1, add adjCell to targets
-		 * 	else, call findAllTargets() with adjCell, numSteps - 1
-		 * 
-		 * 	remove adjCell from visited list
-		 * */
+		// Clear out the target and visited lists
+		_targetCells.clear();
+		_visited.clear();
+		
+		// Add the starting cell to the visited list so we can't re-enter it
+		_visited.add(startCell);
+		
+		// Call findAllTargets with the starting cell
+		findAllTargets(startCell, pathLength);
+		
+		// Once the recursion tree has finished executing, remove the starting cell from the visited list
+		_visited.remove(startCell);
+	}
 
+	private void findAllTargets(TestBoardCell thisCell, int numSteps) {
 		// Get the adjacency list from the startCell
-		Set<TestBoardCell> adjList = startCell.getAdjList();
+		Set<TestBoardCell> adjList = thisCell.getAdjList();
 
 		// Loop through each cell in the adjacency list
 		for (TestBoardCell adjCell: adjList){
-			// If already in visited list, skip the rest of the loop
-			if (_visited.contains(adjCell)) {
+			// If already in visited list or the cell is occupied, skip the rest of the loop
+			if (_visited.contains(adjCell) || adjCell.getOccupied()) {
 				continue;
 			}
 
 			// Add adjCell to the visited list
 			_visited.add(adjCell);
 
-			// If numSteps == 1. add adjCell to targets
-			if (pathLength == 1) {
+			// If numSteps == 1 or is a room. add adjCell to targets
+			if (numSteps == 1 || adjCell.isRoom()) {
 				_targetCells.add(adjCell);
 			}
 			// else, call findAllTargets with adjCell, numSteps - 1
 			else {
-				calcTargets(adjCell, pathLength - 1);
+				findAllTargets(adjCell, numSteps - 1);
 			}
 
 			// Remove adjCell from the visited list
@@ -110,7 +108,6 @@ public class TestBoard {
 	}
 
 	// Gets the targets last created by calcTargets
-	// we aren't going to use this right now
 	public Set<TestBoardCell> getTargets(){
 		return _targetCells;
 	}

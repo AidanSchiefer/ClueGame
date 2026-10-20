@@ -1,3 +1,39 @@
+commit c1bb54ccaf733dd9eaa610ce094a707d04cc7eb7
+Author: Chris <chuss689@gmail.com>
+Date:   Mon Oct 19 16:04:03 2026 -0600
+
+    fixed room room targets test
+
+commit c67a35738e16087cb1d80e27777c3f9231d7d486
+Author: Chris <chuss689@gmail.com>
+Date:   Mon Oct 19 16:01:38 2026 -0600
+
+    fixed some tests and added adjacency implementation
+
+commit 5615bd91dbc215de0124cc5512da771ba38926d8
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Mon Oct 19 12:10:40 2026 -0600
+
+    feat: Added is room and is occupied functionality
+
+commit 5ab4a56ce4296d34f93b037ea6730afb5392a11d
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Mon Oct 19 11:01:35 2026 -0600
+
+    feat: initial implementation for calcTargets
+
+commit c10aba7f468acc041ef14a535c294a53290e56a6
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Fri Oct 16 12:50:12 2026 -0600
+
+    Added todo notes for implementation
+
+commit 4d1f5964b98b8aded91f60138d9e523a439d178f
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Wed Oct 14 17:47:26 2026 -0600
+
+    Added gitlog
+
 commit d66aaa5d6442b139b7f87ab5e9c0f064d38e9f9f
 Author: Aidan Schiefer <aidanschiefer@gmail.com>
 Date:   Wed Oct 14 17:36:14 2026 -0600

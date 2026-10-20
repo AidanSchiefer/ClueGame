@@ -19,9 +19,7 @@ public class TestBoardCell {
 		_adjacencyList = new HashSet<>();
 	}
 
-	// TODO
 	// Setter method to add to the adjacency list
-	//to be implemented later
 	public void addAdjacency(TestBoardCell cell) {
 		_adjacencyList.add(cell);
 	}
@@ -31,23 +29,19 @@ public class TestBoardCell {
 		return _adjacencyList;
 	}
 
-	// TODO
 	// Setter method to set a room status
 	public void setRoom(boolean roomStatus) {
 		_isRoom = roomStatus;
 	}
 
-	// TODO
 	public boolean isRoom() {
 		return _isRoom;
 	}
 
-	// TODO
 	public void setOccupied(boolean occupiedStatus) {
 		_isOccupied = occupiedStatus;
 	}
 
-	// TODO
 	// Getter method to determine if a room is occupied
 	public boolean getOccupied() {
 		return _isOccupied;

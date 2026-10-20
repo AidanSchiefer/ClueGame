@@ -6,6 +6,7 @@ package tests;
 //used static so we don't have to type Assertions.assertEquals every time 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -237,6 +238,7 @@ public class BoardTestsExp {
 		
 		// Test to see if the targets match
 		assertTrue(targets.contains(board.getCell(0, 1)));
+		assertFalse(targets.contains(board.getCell(1, 0)));
 	}
 	
 	// Tests for an interior cell instead of a corner
