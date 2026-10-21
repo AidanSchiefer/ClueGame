@@ -1,4 +1,4 @@
-LO11A Clue Paths 1 and LO12A Clue Paths 2
+Clue Game: CSCI306
 
 Authors: Aidan Schiefer, Chris Hussain
 

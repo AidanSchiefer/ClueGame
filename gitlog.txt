@@ -1,3 +1,9 @@
+commit 6b40e72dc2d4e8b7bdd356cecbe5acbe9a61a649
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Mon Oct 19 20:47:54 2026 -0600
+
+    bugfix: Added findAllTargets for recursive calls, made calcTargets clear out visited and target lists while calling fAT, and fixed testing bugs
+
 commit c1bb54ccaf733dd9eaa610ce094a707d04cc7eb7
 Author: Chris <chuss689@gmail.com>
 Date:   Mon Oct 19 16:04:03 2026 -0600
