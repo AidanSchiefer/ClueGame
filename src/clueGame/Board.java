@@ -17,6 +17,8 @@ public class Board {
 	private Set<BoardCell> _targetCells;
 	// Set that contains the visited cells
 	private Set<BoardCell> _visited;
+	// Grid for the board
+	private BoardCell[][] _grid;
 	// private Map<Character, Room> roomMap
 
     // variable and methods used for singleton pattern
@@ -102,5 +104,10 @@ public class Board {
 	// Gets the targets last created by calcTargets
 	public Set<BoardCell> getTargets(){
 		return _targetCells;
+	}
+	
+	// Method to return the adjacency list for a given cell
+	public Set<BoardCell> getAdjList(int row, int col) {
+		return _grid[row][col].getAdjList();
 	}
 }
