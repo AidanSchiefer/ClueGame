@@ -1,9 +1,11 @@
 package tests;
 
 import static org.junit.Assert.*;
+
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import java.io.FileNotFoundException;
-import org.junit.*;
+import org.junit.Assert;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeAll;
 
 import clueGame.*;
@@ -31,11 +33,10 @@ public class FileInitTests {
 	}
 	
 	// Ensure the layout and setup files are loaded correctly
-	@Test 
+	@Test
 	public void testFileInit() {
-		// Call both load layout functions. This test will fail if the load fails
-		board.loadLayoutConfig();
-		board.loadSetupConfig();
+	    assertDoesNotThrow(() -> {board.loadSetupConfig(); board.loadLayoutConfig();});
+	    assertEquals(LEGEND_SIZE, board.getNumRooms());
 	}
 	
 	// Ensure the correct number of rows/columns have been read
@@ -114,6 +115,14 @@ public class FileInitTests {
 		assertEquals("Kitchen", board.getRoom('K').getName());
 		assertEquals("Elf Dorms", board.getRoom('E').getName());
 		assertEquals("Pantry", board.getRoom('P').getName());
+		
+		// Check the last setup entry
+		assertEquals("Walkway", board.getRoom('W').getName());
+
+		// Check initials stored in actual board cells
+		assertEquals('K', board.getCell(0, 0).getInitial());
+		assertEquals('W', board.getCell(0, 5).getInitial());
+		assertEquals('X', board.getCell(7, 10).getInitial());
 	}
 	
 	// Check that rooms have the proper center cell and label cell
@@ -134,5 +143,10 @@ public class FileInitTests {
 		
 		cell = board.getCell(9, 2);
 		assertTrue(cell.isRoomCenter());
+		
+		// Check that the Kitchen stores the correct cell references
+		assertSame(board.getCell(2, 2), board.getRoom('K').getLabelCell());
+
+		assertSame(board.getCell(3, 2), board.getRoom('K').getCenterCell());
 	}
 }

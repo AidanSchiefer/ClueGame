@@ -1,10 +1,14 @@
 package clueGame;
 
 import java.util.Map;
-import java.util.HashSet;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Scanner;
 import java.util.Set;
-
-import experiment.TestBoardCell;
+import java.util.HashSet;
 
 public class Board {
 
@@ -43,32 +47,225 @@ public class Board {
 	}
 
 	// Method to load the setup config
-	public void loadSetupConfig() {
+	public void loadSetupConfig() throws FileNotFoundException, BadConfigFormatException {
 
+		// Reset the room map each time the setup file is loaded
+		roomMap = new HashMap<>();
+
+		try (Scanner scanner = new Scanner(new File("data", _clueSetupTXT))) {
+
+			while (scanner.hasNextLine()) {
+				String line = scanner.nextLine().trim();
+
+				// Skip comments and empty lines
+				if (line.isEmpty() || line.startsWith("//")) {
+					continue;
+				}
+
+				// Separate the entry into its type, name, and initial
+				String[] parts = line.split(",", -1);
+
+				if (parts.length != 3) {
+					throw new BadConfigFormatException("Setup entries must have three values: " + line);
+				}
+
+				String type = parts[0].trim();
+				String name = parts[1].trim();
+				String symbol = parts[2].trim();
+
+				// Only Room and Space are valid setup types
+				if (!type.equals("Room") && !type.equals("Space")) {
+					throw new BadConfigFormatException( "Unknown setup type: " + type);
+				}
+
+				// Each entry needs a name and a single-character initial
+				if (name.isEmpty() || symbol.length() != 1) {
+					throw new BadConfigFormatException("Invalid room name or initial: " + line);
+				}
+
+				char initial = symbol.charAt(0);
+
+				// Different rooms cannot use the same initial
+				if (roomMap.containsKey(initial)) {
+					throw new BadConfigFormatException("Duplicate room initial: " + initial);
+				}
+
+				// Store the room using its initial as the key
+				roomMap.put(initial, new Room(name));
+			}
+		}
+
+		if (roomMap.isEmpty()) {
+			throw new BadConfigFormatException("The setup file contains no rooms or spaces.");
+		}
 	}
 
-	// Method to set up the layout config
-	public void loadLayoutConfig() {
 
+	// Method to set up the layout config
+	public void loadLayoutConfig()
+			throws FileNotFoundException, BadConfigFormatException {
+
+		// The setup file defines the initials used in the layout
+		if (roomMap == null || roomMap.isEmpty()) {
+			throw new BadConfigFormatException("Load the setup file before the layout file.");
+		}
+
+		// Store the rows so we can determine the grid dimensions
+		List<String[]> rows = new ArrayList<>();
+
+		try (Scanner scanner =
+				new Scanner(new File("data", _clueLayoutCSV))) {
+
+			while (scanner.hasNextLine()) {
+				String line = scanner.nextLine().trim();
+
+				if (line.isEmpty()) {
+					throw new BadConfigFormatException("The layout contains an empty row.");
+				}
+
+				String[] cells = line.split(",", -1);
+
+				// Every row must contain the same number of columns
+				if (!rows.isEmpty() && cells.length != rows.get(0).length) {
+					throw new BadConfigFormatException("All layout rows must have the same number of columns.");
+				}
+
+				rows.add(cells);
+			}
+		}
+
+		if (rows.isEmpty()) {
+			throw new BadConfigFormatException("The layout file is empty.");
+		}
+
+		// Create the grid using the dimensions read from the file
+		_numRows = rows.size();
+		_numColumns = rows.get(0).length;
+		_board = new BoardCell[_numRows][_numColumns];
+
+		// Clear room references from any previously loaded layout
+		for (Room room : roomMap.values()) {
+			room.setCenterCell(null);
+			room.setLabelCell(null);
+		}
+
+		// Assign each cell in the board its corresponding value
+		for (int row = 0; row < _numRows; row++) {
+			for (int col = 0; col < _numColumns; col++) {
+				String entry = rows.get(row)[col].trim();
+
+				// Entries contain an initial and an optional modifier
+				if (entry.length() < 1 || entry.length() > 2) {
+					throw new BadConfigFormatException("Invalid layout entry at " + row + ", " + col + ": " + entry);
+				}
+
+				char initial = entry.charAt(0);
+				Room room = roomMap.get(initial);
+
+				// Every initial must appear in the setup file
+				if (room == null) {
+					throw new BadConfigFormatException("Unknown room initial: " + initial);
+				}
+
+				BoardCell cell = new BoardCell(row, col);
+				cell.setInitial(initial);
+				_board[row][col] = cell;
+
+				// A single-character entry has no additional properties
+				if (entry.length() == 1) {
+					continue;
+				}
+
+				char modifier = entry.charAt(1);
+
+				// Interpret doorway, label, center, and passage markers
+				switch (modifier) {
+				case '^':
+					cell.setDoorDirection(DoorDirection.UP);
+					break;
+
+				case 'v':
+					cell.setDoorDirection(DoorDirection.DOWN);
+					break;
+
+				case '<':
+					cell.setDoorDirection(DoorDirection.LEFT);
+					break;
+
+				case '>':
+					cell.setDoorDirection(DoorDirection.RIGHT);
+					break;
+
+				case '#':
+					// Each room can have only one label cell
+					if (room.getLabelCell() != null) {
+						throw new BadConfigFormatException("Multiple label cells for " + room.getName());
+					}
+
+					cell.setLabel(true);
+					room.setLabelCell(cell);
+					break;
+
+				case '*':
+					// Each room can have only one center cell
+					if (room.getCenterCell() != null) {
+						throw new BadConfigFormatException("Multiple center cells for " + room.getName());
+					}
+
+					cell.setRoomCenter(true);
+					cell.setRoom(true);
+					room.setCenterCell(cell);
+					break;
+
+				default:
+					// Other valid room initials indicate secret passages
+					if (!roomMap.containsKey(modifier) || modifier == 'W' || modifier == 'X') {
+						throw new BadConfigFormatException("Invalid secret passage destination: " + modifier);
+					}
+
+					cell.setSecretPassage(modifier);
+					break;
+				}
+
+				// Doorway markers belong on walkway cells
+				if (cell.isDoorway() && initial != 'W') {
+					throw new BadConfigFormatException("Doorways must be marked on walkway cells.");
+				}
+
+				// Labels, centers, and passages belong inside rooms
+				if ((cell.isLabel() || cell.isRoomCenter() || cell.getSecretPassage() != '\0') && (initial == 'W' || initial == 'X')) {
+					throw new BadConfigFormatException("Room markers must be inside rooms.");
+				}
+			}
+		}
 	}
 
 	/*
 	 * initialize the board (since we are using singleton pattern)
 	 */
-	public void initialize(){
-		// Create the grid
-		// NOTE: I am moving us to a 2D array. I feel like it makes more sense than trying to make the set work
-		for (int row = 0; row < 20; row++) {
-			for (int col = 0; col < 20; col++) {
-				_board[row][col] = new BoardCell(row, col);
-			}
+	/*
+	 * initialize the board (since we are using singleton pattern)
+	 */
+	public void initialize() {
+		// Reset movement data for the newly loaded board
+		_targetCells = new HashSet<>();
+		_visited = new HashSet<>();
+
+		// Clear the previous grid and dimensions
+		_board = null;
+		_numRows = 0;
+		_numColumns = 0;
+
+		try {
+			// Call loadSetupConfig and loadLayoutConfig
+			loadSetupConfig();
+			loadLayoutConfig();
 		}
-		
-		// Call loadSetupConfig and loadLayoutConfig
-		loadSetupConfig();
-		loadLayoutConfig();
-		
-		// Assign each cell in the board is corresponding value?
+		catch (FileNotFoundException | BadConfigFormatException e) {
+			// Display a useful message if initialization fails
+			System.err.println(
+					"Unable to initialize board: " + e.getMessage());
+		}
 	}
 
 	// Method to calculate legal targets for a move from startCell of length pathLength
@@ -149,6 +346,11 @@ public class Board {
 	// Getter method that returns the room object if it corresponds to the parameter char
 	public Room getRoom(BoardCell cell) {
 		// Return the desired room based off of symbol
-		return roomMap.get(cell);
+		return roomMap.get(cell.getInitial());
+	}
+	
+	// Getter method to get the number of rooms and spaces in the setup
+	public int getNumRooms() {
+		return roomMap.size();
 	}
 }

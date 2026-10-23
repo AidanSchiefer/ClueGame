@@ -75,7 +75,6 @@ public class BoardCell {
 
 	// Function to determine if the given cell is a door
 	public boolean isDoorway() {
-		// If the door direction is anything but NONE, it is a door
 		return _doorDirection != DoorDirection.NONE;
 	}
 
