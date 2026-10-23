@@ -1,0 +1,31 @@
+This is the test file outlining test choices for FileInitTests.java
+
+Test 1: testFileInit()
+
+My mindset behind this test was to explicitly test loading the configurations for the board and setup files. The test should fail if one of the loads throws and fails.
+
+Test 2: testRowCol()
+
+This one was hard to come up with something that wasn't already shown in the given tests. I wanted to test that the board did read and process the correct amout of rows
+and columns, and this test function validates that.
+
+Test 3: testDoorwayDirection()
+
+My motivation behind this test function was to verify differnt doorways in different parts of the board to make sure that they will be processed correctly. I wanted to test
+doors close to the start of the board and across the other side of the board. I also wanted to check a room cell to verify it wasn't processed as a door and contains the DoorDirection
+enum NONE.
+
+Test 4: testNumDoors()
+
+I couldn't think of any other way to test this than doing what the 306 code already does. It looks through the board and keeps track of every door using a counter, then it checks 
+that it counted the correct amout of doors in our board, which is 15.
+
+Test 5: testInitialsNames()
+
+This test is a mixture of testing that getting a room initial gives the corresponding name. I wanted to test differnt room names in different parts of the board, some with single words
+for the room name, and others with multiple words like "Elf Dorm" in them to make sure we are processing the data properly
+
+Test 6: testCenterLabel()
+
+This test is also similar to that of the one given in the 306 testing code. I tested two different label cells and two different center cells in different parts of the board to 
+make sure that they were being processed and interpreted correctly
