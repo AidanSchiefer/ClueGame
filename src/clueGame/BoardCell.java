@@ -11,6 +11,11 @@ public class BoardCell {
 	// Member variables
 		private int _boardRow;
 		private int _boardColumn;
+		private char _roomInitial;
+		private DoorDirection _doorDirection;
+		private boolean _roomLabel;
+		private boolean _roomCenter;
+		private char secretPassage;
 		private Set<BoardCell> _adjacencyList;
 		private boolean _isRoom = false;
 		private boolean _isOccupied = false;

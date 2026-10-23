@@ -11,14 +11,14 @@ public class Board {
 	private String _clueSetupTXT;
 	private int numRows;
 	private int numColumns;
-	// Set that contains the board
+	// Set that contains the board - Not using this
 	private Set<BoardCell> _testBoard;
 	// Set that contains target cells
 	private Set<BoardCell> _targetCells;
 	// Set that contains the visited cells
 	private Set<BoardCell> _visited;
 	// Grid for the board
-	private BoardCell[][] _grid;
+	private BoardCell[][] _board;
 	// private Map<Character, Room> roomMap
 
     // variable and methods used for singleton pattern
@@ -91,6 +91,7 @@ public class Board {
 		}
 	}
 	
+	// TODO: Change this implementation to use the 2D array instead of the set
 	// Getter method that returns the cell at the board at row, col
 	public BoardCell getCell(int row, int col) {
 		for (BoardCell cell : _testBoard) {
@@ -108,6 +109,6 @@ public class Board {
 	
 	// Method to return the adjacency list for a given cell
 	public Set<BoardCell> getAdjList(int row, int col) {
-		return _grid[row][col].getAdjList();
+		return _board[row][col].getAdjList();
 	}
 }
