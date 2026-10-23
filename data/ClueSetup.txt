@@ -1,0 +1,15 @@
+// Rooms
+Room, Kitchen, K
+Room, Factory, F
+Room, Santa's Bedroom, B
+Room, Reindeer Pen, R
+Room, Elf Dorms, E
+Room, Living Room, L
+Room, Closet, C
+Room, Sweets Room, S
+Room, Pantry, P
+// Other spaces
+Space, Unused, X
+Space, Walkway, W
+Space, Door, W<>v^
+Space, Secret Passage

@@ -56,7 +56,19 @@ public class Board {
 	 * initialize the board (since we are using singleton pattern)
 	 */
 	public void initialize(){
-
+		// Create the grid
+		// NOTE: I am moving us to a 2D array. I feel like it makes more sense than trying to make the set work
+		for (int row = 0; row < 20; row++) {
+			for (int col = 0; col < 20; col++) {
+				_board[row][col] = new BoardCell(row, col);
+			}
+		}
+		
+		// Call loadSetupConfig and loadLayoutConfig
+		loadSetupConfig();
+		loadLayoutConfig();
+		
+		// Assign each cell in the board is corresponding value?
 	}
 
 	// Method to calculate legal targets for a move from startCell of length pathLength
@@ -103,15 +115,9 @@ public class Board {
 		}
 	}
 
-	// TODO: Change this implementation to use the 2D array instead of the set
 	// Getter method that returns the cell at the board at row, col
 	public BoardCell getCell(int row, int col) {
-		for (BoardCell cell : _testBoard) {
-			if (cell.getRow() == row && cell.getColumn() == col) {
-				return cell;
-			}
-		}
-		return null;
+		return _board[row][col];
 	}
 
 	// Gets the targets last created by calcTargets
