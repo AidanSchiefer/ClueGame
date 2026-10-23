@@ -15,7 +15,7 @@ public class BoardCell {
 		private DoorDirection _doorDirection;
 		private boolean _roomLabel;
 		private boolean _roomCenter;
-		private char secretPassage;
+		private char _secretPassage;
 		private Set<BoardCell> _adjacencyList;
 		private boolean _isRoom = false;
 		private boolean _isOccupied = false;
@@ -61,5 +61,36 @@ public class BoardCell {
 
 		public int getColumn() {
 			return _boardColumn;
+		}
+		
+		// Function to determine if the given cell is a door
+		public boolean isDoorway() {
+			// If the door direction is anything but NONE, it is a door
+			if (_doorDirection != DoorDirection.NONE) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		
+		// Getter method to get the door direction of a given cell
+		public DoorDirection getDoorDirection() {
+			return _doorDirection;
+		}
+		
+		// Function to determine if a cell is a label
+		public boolean isLabel() {
+			return _roomLabel;
+		}
+		
+		// Function to determine if a cell is the center cell or not
+		public boolean isRoomCenter() {
+			return _roomCenter;
+		}
+		
+		// Getter method to get the symbol of the secret passage
+		public char getSecretPassage() {
+			return _secretPassage;
 		}
 }
