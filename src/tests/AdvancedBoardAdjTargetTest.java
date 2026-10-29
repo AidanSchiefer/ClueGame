@@ -53,12 +53,12 @@ public class AdvancedBoardAdjTargetTest {
 		assertTrue(testAdjList.contains(board.getCell(17, 9)));
 	}
 	
-	// Create test for adjacency at room. It's only allowed adjacancies are doorways and other room centers IF there is a secret passage
+	// Create test for adjacency at room. It's only allowed adjacencies are doorways and other room centers IF there is a secret passage
 	@Test
 	public void testRoomAdj() {
 		// Check the adjacency for the Kitchen
 		Set<BoardCell> testAdjList = board.getAdjList(3, 2);
-		// Test that it has the correct amount of adjacancies
+		// Test that it has the correct amount of adjacencies
 		assertEquals(1, testAdjList.size());
 		// Check that the list contains the correct cells
 		assertTrue(testAdjList.contains(board.getCell(6, 1)));
@@ -92,24 +92,118 @@ public class AdvancedBoardAdjTargetTest {
 		assertTrue(testAdjList.contains(board.getCell(4, 9)));
 		assertTrue(testAdjList.contains(board.getCell(4, 11)));
 		assertTrue(testAdjList.contains(board.getCell(5, 10)));
+		// Assert that the room cell above it is not in the list
+		assertFalse(testAdjList.contains(board.getCell(3, 10)));
 	}
 	
-	// TODO: Create test for target at room Santa's Bedroom
+	// Create test for target at room Santa's Bedroom
 	@Test
 	public void testSantasBedTarget() {
+		// Test targets, roll 1
+		board.calcTargets(board.getCell(18, 17), 1);
+		// Get the targets list
+		Set<BoardCell> targets = board.getTargets();
+		// Check that the lost contains the correct amount of cells
+		assertEquals(2, targets.size());
+		// Check that the list contains the correct cells
+		assertTrue(targets.contains(board.getCell(19, 13)));
+		assertTrue(targets.contains(board.getCell(13, 16)));
 		
+		// Test targets, roll 2
+		board.calcTargets(board.getCell(18, 17), 2);
+		// Get the targets list
+		targets = board.getTargets();
+		// Check that the list contains the correct amount of cells
+		assertEquals(6, targets.size());
+		// Check that the list contains some of the correct cells
+		assertTrue(targets.contains(board.getCell(13, 15)));
+		assertTrue(targets.contains(board.getCell(13, 17)));
+		assertTrue(targets.contains(board.getCell(18, 13)));
+		assertTrue(targets.contains(board.getCell(20, 13)));
+		
+		// Test targets, roll 3
+		board.calcTargets(board.getCell(18, 17), 3);
+		// Get the targets list
+		targets = board.getTargets();
+		// Check that the list contains the correct amount of cells
+		assertEquals(7, targets.size());
+		// Check that the list contains some of the correct cells
+		assertTrue(targets.contains(board.getCell(11, 16)));
+		assertTrue(targets.contains(board.getCell(12, 17)));
+		assertTrue(targets.contains(board.getCell(13, 18)));
+		assertTrue(targets.contains(board.getCell(18, 12)));
 	}
 	
-	// TODO: Create test for target at room Elf Dorm
+	// Create test for target at room Living Room. Regardless of roll, can take secret passage
 	@Test
-	public void testElfDormTarget() {
+	public void testLivingRoomTarget() {
+		// Test targets, roll 1
+		board.calcTargets(board.getCell(18, 2), 1);
+		// Get the targets list
+		Set<BoardCell> targets = board.getTargets();
+		// Check that the list contains the correct amount of cells
+		assertEquals(2, targets.size());
+		// Check that the list contains the correct cells
+		assertTrue(targets.contains(board.getCell(17, 5)));
+		assertTrue(targets.contains(board.getCell(17, 9))); // Secret Passage to Reindeer Pen
 		
+		// Test targets, roll 2
+		board.calcTargets(board.getCell(18, 2), 2);
+		// Get the targets list
+		targets = board.getTargets();
+		// Check that the list contains the correct amount of cells
+		assertEquals(3, targets.size());
+		// Check that the list contains the correct cells
+		assertTrue(targets.contains(board.getCell(17, 9))); // Secret Passage to Reindeer Pen
+		assertTrue(targets.contains(board.getCell(17, 6)));
+		assertTrue(targets.contains(board.getCell(16, 5)));
+		
+		// Test targets, roll 3
+		board.calcTargets(board.getCell(18, 2), 3);
+		// Get the targets list
+		targets = board.getTargets();
+		// Check that the list contains the correct amount of cells
+		assertEquals(6, targets.size());
+		// Check that the list contains some of the correct cells
+		assertTrue(targets.contains(board.getCell(17, 9))); // Secret Passage to Reindeer Pen
+		assertTrue(targets.contains(board.getCell(18, 6)));
+		assertTrue(targets.contains(board.getCell(15, 5)));
+		assertTrue(targets.contains(board.getCell(17, 7)));
 	}
 	
-	// TODO: Create test for target at doorway
+	// Create test for target at doorway, can always enter the room
 	@Test
 	public void testDoorwayTarget() {
+		// Test targets, roll 1
+		board.calcTargets(board.getCell(1, 5), 1);
+		// Get the targets list
+		Set<BoardCell> targets = board.getTargets();
+		// Check that the list contains the correct amount of cells
+		assertEquals(3, targets.size());
+		// Check that the list contains the correct cells
+		assertTrue(targets.contains(board.getCell(3, 7))); // Room center
+		assertTrue(targets.contains(board.getCell(0, 5)));
+		assertTrue(targets.contains(board.getCell(2, 5)));
 		
+		// Test targets, roll 2
+		board.calcTargets(board.getCell(1, 5), 2);
+		// Get the targets list
+		targets = board.getTargets();
+		// Check that the list contains the correct amount of cells
+		assertEquals(2, targets.size());
+		// Check that the list contains the correct cells
+		assertTrue(targets.contains(board.getCell(3, 7))); // Room center
+		assertTrue(targets.contains(board.getCell(3, 5)));
+		
+		// Test targets, roll 3
+		board.calcTargets(board.getCell(1, 5), 3);
+		// Get the targets list
+		targets = board.getTargets();
+		// Check that the list contains the correct amount of cells
+		assertEquals(2, targets.size());
+		// Check that the list contains the correct cells
+		assertTrue(targets.contains(board.getCell(3, 7))); // Room center
+		assertTrue(targets.contains(board.getCell(4, 5)));
 	}
 	
 	// Create test target in walkway
@@ -149,9 +243,56 @@ public class AdvancedBoardAdjTargetTest {
 		assertTrue(targets.contains(board.getCell(8, 7)));
 	}
 	
-	// TODO: Create test for targets where spaces are occupied
+	// Create test for targets where spaces are occupied
 	@Test
 	public void testOccupiedTarget() {
+		// Test a walkway that has two options blocked
+		// Set two walkways to occupied
+		board.getCell(6, 12).setOccupied(true);
+		board.getCell(7, 13).setOccupied(true);
+		// Calculate the targets, roll 1
+		board.calcTargets(board.getCell(6, 13), 1);
+		// Set the walkways back to unoccupied
+		board.getCell(6, 12).setOccupied(true);
+		board.getCell(7, 13).setOccupied(true);
+		// Get the targets
+		Set<BoardCell> targets = board.getTargets();
+		// Check that the correct amount of targets exist in the list
+		assertEquals(2, targets.size());
+		// Check that the correct cells exist in the list
+		assertTrue(targets.contains(board.getCell(5, 13)));
+		assertTrue(targets.contains(board.getCell(6, 14)));
 		
+		// Test entering a room that is occupied
+		// Set a room as occupied
+		board.getCell(2, 11).setOccupied(true);
+		// Calculate the targets
+		board.calcTargets(board.getCell(4, 11), 1);
+		// Set the room to unoccupied
+		board.getCell(2, 11).setOccupied(false);
+		// Get the targets list
+		targets = board.getTargets();
+		// Check that the correct amount of targets exist in the list
+		assertEquals(3, targets.size());
+		// Check that the correct cells exist in the list
+		assertTrue(targets.contains(board.getCell(2, 11))); // Room center
+		assertTrue(targets.contains(board.getCell(4, 10)));
+		assertTrue(targets.contains(board.getCell(4, 12)));
+		
+		// Test leaving a room with a blocked doorway at closet
+		// Set a doorway to occupied
+		board.getCell(8, 14).setOccupied(true);
+		// Calculate the targets, roll 3
+		board.calcTargets(board.getCell(9, 17), 3);
+		// Set the doorway back to unoccupied
+		board.getCell(8, 14).setOccupied(false);
+		// Get the targets list
+		targets = board.getTargets();
+		// Check that the correct amount of targets exist in the list
+		assertEquals(5, targets.size());
+		// Check that some of the correct cells exist in the list
+		assertTrue(targets.contains(board.getCell(7, 15)));
+		assertTrue(targets.contains(board.getCell(6, 16)));	
+		assertTrue(targets.contains(board.getCell(5, 17)));
 	}
 }
