@@ -30,10 +30,27 @@ public class AdvancedBoardAdjTargetTest {
 		board.initialize();
 	}
 	
-	// TODO: Create test for adjacency at a door
+	// TODO: Create test for adjacency at a door. Ensure adj includes available walkway and room center
 	@Test
 	public void testDoorAdj() {
+		// Get the adj list for one of the doorways
+		Set<BoardCell> testAdjList = board.getAdjList(6, 1);
+		// Test it has the correct amount of adjacencies
+		assertEquals(3, testAdjList.size());
+		// Check that the list contains the correct cells
+		assertTrue(testAdjList.contains(board.getCell(6, 0)));
+		assertTrue(testAdjList.contains(board.getCell(6, 2)));
+		assertTrue(testAdjList.contains(board.getCell(9, 2)));
 		
+		// Get the adj list for another doorway
+		testAdjList = board.getAdjList(13, 8);
+		// Test it has the correct amount of adjacencies
+		assertEquals(4, testAdjList.size());
+		// Check that the list contains the correct cells
+		assertTrue(testAdjList.contains(board.getCell(13, 7)));
+		assertTrue(testAdjList.contains(board.getCell(13, 9)));
+		assertTrue(testAdjList.contains(board.getCell(12, 8)));
+		assertTrue(testAdjList.contains(board.getCell(17, 9)));
 	}
 	
 	// TODO: Create test for adjacency at room
