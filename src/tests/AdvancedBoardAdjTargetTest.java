@@ -31,20 +31,86 @@ public class AdvancedBoardAdjTargetTest {
 	}
 	
 	// TODO: Create test for adjacency at a door
+	@Test
+	public void testDoorAdj() {
+		
+	}
 	
 	// TODO: Create test for adjacency at room
+	@Test
+	public void testRoomAdj() {
+		
+	}
 	
 	// TODO: Create a test for adjacency at Secret Passage
+	@Test
+	public void testSecretPassAdj() {
+		
+	}
 	
 	// TODO: Create a test for adjacency at walkway
+	@Test
+	public void testWalkAdj() {
+		
+	}
 	
 	// TODO: Create test for target at room Santa's Bedroom
+	@Test
+	public void testSantasBedTarget() {
+		
+	}
 	
 	// TODO: Create test for target at room Elf Dorm
+	@Test
+	public void testElfDormTarget() {
+		
+	}
 	
 	// TODO: Create test for target at doorway
+	@Test
+	public void testDoorwayTarget() {
+		
+	}
 	
-	// TODO: Create test for target in walkway
+	@Test
+	public void testWalkwayTarget() {
+		// Test a roll of 1
+		board.calcTargets(board.getCell(6, 10), 1);
+		// Get the target list
+		Set<BoardCell> targets = board.getTargets();
+		// Test that the correct amount of targets exist in the list
+		assertEquals(3, targets.size());
+		// Check that the correct cells exist in the target list
+		assertTrue(targets.contains(board.getCell(6, 9)));
+		assertTrue(targets.contains(board.getCell(6, 11)));
+		assertTrue(targets.contains(board.getCell(5, 10)));
+		
+		// Test a roll of 2
+		board.calcTargets(board.getCell(6, 10), 2);
+		// Get the target list
+		targets = board.getTargets();
+		// Check that the correct amount of targets exist in the list
+		assertEquals(7, targets.size());
+		// Test that some of the correct cells exist in the target list
+		assertTrue(targets.contains(board.getCell(7, 9)));
+		assertTrue(targets.contains(board.getCell(5, 10)));
+		assertTrue(targets.contains(board.getCell(6, 12)));
+		
+		// Test a roll of 5
+		board.calcTargets(board.getCell(6, 10), 5);
+		// Get the target list
+		targets = board.getTargets();
+		// Test that the correct amount of targets exist in the list
+		assertEquals(8, targets.size());
+		// Test that some of the correct cells exist in the target list
+		assertTrue(targets.contains(board.getCell(6, 15)));
+		assertTrue(targets.contains(board.getCell(5, 14)));
+		assertTrue(targets.contains(board.getCell(8, 7)));
+	}
 	
 	// TODO: Create test for targets where spaces are occupied
+	@Test
+	public void testOccupiedTarget() {
+		
+	}
 }
