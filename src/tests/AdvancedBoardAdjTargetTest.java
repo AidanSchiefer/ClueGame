@@ -30,7 +30,7 @@ public class AdvancedBoardAdjTargetTest {
 		board.initialize();
 	}
 	
-	// TODO: Create test for adjacency at a door. Ensure adj includes available walkway and room center
+	// Create test of adjacency at a door. Ensure adj includes available walkway and room center
 	@Test
 	public void testDoorAdj() {
 		// Get the adj list for one of the doorways
@@ -53,22 +53,45 @@ public class AdvancedBoardAdjTargetTest {
 		assertTrue(testAdjList.contains(board.getCell(17, 9)));
 	}
 	
-	// TODO: Create test for adjacency at room
+	// Create test for adjacency at room. It's only allowed adjacancies are doorways and other room centers IF there is a secret passage
 	@Test
 	public void testRoomAdj() {
+		// Check the adjacency for the Kitchen
+		Set<BoardCell> testAdjList = board.getAdjList(3, 2);
+		// Test that it has the correct amount of adjacancies
+		assertEquals(1, testAdjList.size());
+		// Check that the list contains the correct cells
+		assertTrue(testAdjList.contains(board.getCell(6, 1)));
 		
+		// Check the adjacencies for factory (one door, secret passage)
+		testAdjList = board.getAdjList(2, 17);
+		// Test that is has the correct amount of adjacencies
+		assertEquals(2, testAdjList.size());
+		// Check that the list contains the correct cells
+		assertTrue(testAdjList.contains(board.getCell(5, 15)));
+		assertTrue(testAdjList.contains(board.getCell(9, 2)));
+		
+		// Check the adjacencies for Reindeer Pen (three doors)
+		testAdjList = board.getAdjList(17, 9);
+		// Check that the list contains the correct amount of adjacencies
+		assertEquals(3, testAdjList.size());
+		// Check that the list contains the correct cells
+		assertTrue(testAdjList.contains(board.getCell(16, 7)));
+		assertTrue(testAdjList.contains(board.getCell(13, 8)));
+		assertTrue(testAdjList.contains(board.getCell(16, 12)));
 	}
 	
-	// TODO: Create a test for adjacency at Secret Passage
-	@Test
-	public void testSecretPassAdj() {
-		
-	}
-	
-	// TODO: Create a test for adjacency at walkway
+	// Create a test for adjacency at walkway
 	@Test
 	public void testWalkAdj() {
-		
+		// Get a walkway that has a door adjacent to it
+		Set<BoardCell> testAdjList = board.getAdjList(4, 10);
+		// Check that the list contains the correct amount of Cells
+		assertEquals(3, testAdjList.size());
+		// Check that the list contains the correct cells
+		assertTrue(testAdjList.contains(board.getCell(4, 9)));
+		assertTrue(testAdjList.contains(board.getCell(4, 11)));
+		assertTrue(testAdjList.contains(board.getCell(5, 10)));
 	}
 	
 	// TODO: Create test for target at room Santa's Bedroom
@@ -89,6 +112,7 @@ public class AdvancedBoardAdjTargetTest {
 		
 	}
 	
+	// Create test target in walkway
 	@Test
 	public void testWalkwayTarget() {
 		// Test a roll of 1
