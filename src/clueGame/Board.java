@@ -12,13 +12,11 @@ import java.util.HashSet;
 
 public class Board {
 
-	// Member variables
+	// Member variables - clean up initialization
 	private String _clueLayoutCSV;
 	private String _clueSetupTXT;
 	private int _numRows;
 	private int _numColumns;
-	// Set that contains the board - Not using this
-	private Set<BoardCell> _testBoard;
 	// Set that contains target cells
 	private Set<BoardCell> _targetCells;
 	// Set that contains the visited cells
@@ -236,6 +234,8 @@ public class Board {
 				if ((cell.isLabel() || cell.isRoomCenter() || cell.getSecretPassage() != '\0') && (initial == 'W' || initial == 'X')) {
 					throw new BadConfigFormatException("Room markers must be inside rooms.");
 				}
+				
+				// Add room logic to add center cell and label cell for each room
 			}
 		}
 	}
