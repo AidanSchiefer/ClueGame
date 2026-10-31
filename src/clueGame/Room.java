@@ -11,7 +11,7 @@ public class Room {
 		super();
 	}
 
-	// Constructor that assigns the room name
+	// Constructor that assigns the room name - add center cell and label cell
 	public Room(String name) {
 		_name = name;
 	}
