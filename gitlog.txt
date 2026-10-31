@@ -1,209 +1,270 @@
+commit 268ad31c9d7914cbad4d2c479372cc26ee1d9e2d
+Author: Chris <chuss689@gmail.com>
+Date:   2026-10-30 23:44:55 -0600
+
+    final touches
+
+commit fc96dd52bda41e9bf0d70d96f482ad9b67bc0554
+Merge: 3be39d8 21c7d85
+Author: Chris <chuss689@gmail.com>
+Date:   2026-10-30 23:36:58 -0600
+
+    Merge branch 'main' of https://github.com/AidanSchiefer/ClueGame.git into main
+
+commit 3be39d888abd0795bf0e35b2fd47db463ec9fc43
+Author: Chris <chuss689@gmail.com>
+Date:   2026-10-30 23:02:43 -0600
+
+    \finished
+
+commit 21c7d85059545604ea9a0460d73d0896b5507fbe
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   2026-10-30 15:20:42 -0600
+
+    Updated adjacency tests with more test cases
+
+commit 966eae01ba598659afdc6ece9b4e8aa8df267617
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   2026-10-29 17:27:55 -0600
+
+    Finished target tests
+
+commit f8f2e5c6aa6534d9dd723c70ea35f63d16d192fc
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   2026-10-29 13:34:58 -0600
+
+    Finished the adjacency tests
+
+commit fd787c4ce65b33c9ab8a56fb675186a0cf9900a6
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   2026-10-29 10:36:00 -0600
+
+    Implemented testDoorAdj
+
+commit d26434b3ea9486814fc7d3564ed737c24b0df55d
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   2026-10-29 10:15:05 -0600
+
+    implemented testWalkwayTarget
+
+commit 04cb472c62a6726fc6be1061a0324471cfafb6b4
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   2026-10-29 08:47:14 -0600
+
+    added test setup and TODOs for main tests
+
+commit f14c7352bd3c6843c60b5088ea1b8d5dce8ecf7d
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   2026-10-29 08:25:19 -0600
+
+    Added 306 advanced adj test file and added skeleton code for our advanced adj tests
+
 commit 7b9e5c2cdb075ef27845aefb1d03f09e27cb6fa8
 Author: Chris <chuss689@gmail.com>
-Date:   Fri Oct 23 17:08:19 2026 -0600
+Date:   2026-10-23 17:08:19 -0600
 
     got tests passing, changed comments
 
 commit 44b14a56459893f4d0c2b042deca6755fda7a570
 Author: Chris <chuss689@gmail.com>
-Date:   Fri Oct 23 16:11:04 2026 -0600
+Date:   2026-10-23 16:11:04 -0600
 
     editted bad config and room and boardcell
 
 commit 79766f8a4c0b68872ac5437ff1eff31fa48c52bf
 Author: Aidan Schiefer <aidanschiefer@gmail.com>
-Date:   Fri Oct 23 10:52:29 2026 -0600
+Date:   2026-10-23 10:52:29 -0600
 
     Added some tests to our ExceptionTests class
 
 commit 491dbe05941ebf07fa8ede9cafa27fd0565f8edd
 Author: Aidan Schiefer <aidanschiefer@gmail.com>
-Date:   Fri Oct 23 10:37:07 2026 -0600
+Date:   2026-10-23 10:37:07 -0600
 
     Added Test.txt to describe the tests I wrote for FileInitTests
 
 commit 3a1f9945b84b6203dc6e55174a7cda682f795264
 Author: Aidan Schiefer <aidanschiefer@gmail.com>
-Date:   Fri Oct 23 00:44:25 2026 -0600
+Date:   2026-10-23 00:44:25 -0600
 
     added our own FileInitTests test suite
 
 commit bcea0a1de19e0f279c2c1c99cbf909900b382c4c
 Author: Aidan Schiefer <aidanschiefer@gmail.com>
-Date:   Thu Oct 22 22:47:41 2026 -0600
+Date:   2026-10-22 22:47:41 -0600
 
     Added shell implementation and full implementation to methods for Board, BoardCell, and Room to allow FileInitTests to compile
 
 commit 07247ba4e0604f56b14a3ac54883c79c8fe9a917
 Author: Aidan Schiefer <aidanschiefer@gmail.com>
-Date:   Thu Oct 22 22:08:26 2026 -0600
+Date:   2026-10-22 22:08:26 -0600
 
     added room class
 
 commit cd7e5608119270c4f363bf0a5ff331b9d138450e
 Author: Aidan Schiefer <aidanschiefer@gmail.com>
-Date:   Thu Oct 22 22:05:48 2026 -0600
+Date:   2026-10-22 22:05:48 -0600
 
     Added 306 data files, more private variables to Board and Board cell, and created skeleton code for custom exception class and enum class
 
 commit 3409211bf179c2adca0cee79916d3e7bd854a8cb
 Merge: 51717ca fe5d190
 Author: Aidan Schiefer <aidanschiefer@gmail.com>
-Date:   Wed Oct 21 12:41:29 2026 -0600
+Date:   2026-10-21 12:41:29 -0600
 
     Merge branch 'main' of https://github.com/AidanSchiefer/ClueGame
     Merging branches
 
 commit 51717ca438bde641eba0e5abb392ec440ecdc6d8
 Author: Aidan Schiefer <aidanschiefer@gmail.com>
-Date:   Wed Oct 21 12:41:17 2026 -0600
+Date:   2026-10-21 12:41:17 -0600
 
     finished writing out basic structure for Board and BoardCell
 
 commit fe5d190a2cad29327d5d4418c35860686ad4e8e6
 Merge: 43c8a2e dd4cf64
 Author: Chris <chuss689@gmail.com>
-Date:   Wed Oct 21 12:35:03 2026 -0600
+Date:   2026-10-21 12:35:03 -0600
 
     Merge branch 'main' of https://github.com/AidanSchiefer/ClueGame.git into main
 
 commit 43c8a2e393f6f77952ba6d9343fba0cf6ec22717
 Author: Chris <chuss689@gmail.com>
-Date:   Wed Oct 21 12:34:47 2026 -0600
+Date:   2026-10-21 12:34:47 -0600
 
     added L013A tests
 
 commit dd4cf64ebc1f61a46a2c05463a02e9b4daadf74d
 Author: Aidan Schiefer <aidanschiefer@gmail.com>
-Date:   Wed Oct 21 12:33:20 2026 -0600
+Date:   2026-10-21 12:33:20 -0600
 
     Continued building out Board and BoardCell. Working on getting one BoardAdjTest306 test to compile
 
 commit 700bd40a25cb83cafb8929d6b91c9afdedfe5cf0
 Author: Aidan Schiefer <aidanschiefer@gmail.com>
-Date:   Wed Oct 21 12:18:21 2026 -0600
+Date:   2026-10-21 12:18:21 -0600
 
     feat: added member variables for config files and created the setConfigFiles method
 
 commit 9b343507c241725925ae3d4503338a4aff1a394e
 Author: Aidan Schiefer <aidanschiefer@gmail.com>
-Date:   Wed Oct 21 12:09:49 2026 -0600
+Date:   2026-10-21 12:09:49 -0600
 
     Added new files for full clueGame
 
 commit b6130aaeb4d6f774e66a3d8e8a248d4c9a761d74
 Author: Aidan Schiefer <aidanschiefer@gmail.com>
-Date:   Wed Oct 21 11:40:30 2026 -0600
+Date:   2026-10-21 11:40:30 -0600
 
     Updated README
 
 commit 6b40e72dc2d4e8b7bdd356cecbe5acbe9a61a649
 Author: Aidan Schiefer <aidanschiefer@gmail.com>
-Date:   Mon Oct 19 20:47:54 2026 -0600
+Date:   2026-10-19 20:47:54 -0600
 
     bugfix: Added findAllTargets for recursive calls, made calcTargets clear out visited and target lists while calling fAT, and fixed testing bugs
 
 commit c1bb54ccaf733dd9eaa610ce094a707d04cc7eb7
 Author: Chris <chuss689@gmail.com>
-Date:   Mon Oct 19 16:04:03 2026 -0600
+Date:   2026-10-19 16:04:03 -0600
 
     fixed room room targets test
 
 commit c67a35738e16087cb1d80e27777c3f9231d7d486
 Author: Chris <chuss689@gmail.com>
-Date:   Mon Oct 19 16:01:38 2026 -0600
+Date:   2026-10-19 16:01:38 -0600
 
     fixed some tests and added adjacency implementation
 
 commit 5615bd91dbc215de0124cc5512da771ba38926d8
 Author: Aidan Schiefer <aidanschiefer@gmail.com>
-Date:   Mon Oct 19 12:10:40 2026 -0600
+Date:   2026-10-19 12:10:40 -0600
 
     feat: Added is room and is occupied functionality
 
 commit 5ab4a56ce4296d34f93b037ea6730afb5392a11d
 Author: Aidan Schiefer <aidanschiefer@gmail.com>
-Date:   Mon Oct 19 11:01:35 2026 -0600
+Date:   2026-10-19 11:01:35 -0600
 
     feat: initial implementation for calcTargets
 
 commit c10aba7f468acc041ef14a535c294a53290e56a6
 Author: Aidan Schiefer <aidanschiefer@gmail.com>
-Date:   Fri Oct 16 12:50:12 2026 -0600
+Date:   2026-10-16 12:50:12 -0600
 
     Added todo notes for implementation
 
 commit 4d1f5964b98b8aded91f60138d9e523a439d178f
 Author: Aidan Schiefer <aidanschiefer@gmail.com>
-Date:   Wed Oct 14 17:47:26 2026 -0600
+Date:   2026-10-14 17:47:26 -0600
 
     Added gitlog
 
 commit d66aaa5d6442b139b7f87ab5e9c0f064d38e9f9f
 Author: Aidan Schiefer <aidanschiefer@gmail.com>
-Date:   Wed Oct 14 17:36:14 2026 -0600
+Date:   2026-10-14 17:36:14 -0600
 
     updated occupation target function name
 
 commit e5db567717ce2bccc3c7b3d85b4ae875933ab747
 Author: Aidan Schiefer <aidanschiefer@gmail.com>
-Date:   Wed Oct 14 17:35:45 2026 -0600
+Date:   2026-10-14 17:35:45 -0600
 
     feat: added target tests
 
 commit 45db9776739a6383581a78ab7c202df4af7292ad
 Author: Chris <chuss689@gmail.com>
-Date:   Wed Oct 14 15:31:38 2026 -0600
+Date:   2026-10-14 15:31:38 -0600
 
     quick comment
 
 commit 96cea03a3f6c90fb6620af80b303e6100edbdc01
 Author: Chris <chuss689@gmail.com>
-Date:   Wed Oct 14 15:14:00 2026 -0600
+Date:   2026-10-14 15:14:00 -0600
 
     fixed testBoard and TestBoardCell and implemented all adjacency tests
 
 commit bd6985c88252ebf185541bb84035ec87d78b04ea
 Merge: a6bb801 4f71a79
 Author: Aidan Schiefer <aidanschiefer@gmail.com>
-Date:   Tue Oct 13 21:40:33 2026 -0600
+Date:   2026-10-13 21:40:33 -0600
 
     Merge branch 'main' of https://github.com/AidanSchiefer/CluePaths1
     added shell code for BoardTestsExp
 
 commit a6bb801229ca47c4696ee9c93df69665af4980f9
 Author: Aidan Schiefer <aidanschiefer@gmail.com>
-Date:   Tue Oct 13 21:40:04 2026 -0600
+Date:   2026-10-13 21:40:04 -0600
 
     Added shell code for BoardTestExp. To be fully implemented'
     '
 
 commit 4f71a7936892cd6c81d65c91a7fa3a135c11d52b
 Author: Aidan Schiefer <aidanschiefer@gmail.com>
-Date:   Tue Oct 13 21:32:57 2026 -0600
+Date:   2026-10-13 21:32:57 -0600
 
     Updated .gitignore
 
 commit a1046fc68d85de426581fa4b7854b028030af2b9
 Author: Aidan Schiefer <aidanschiefer@gmail.com>
-Date:   Tue Oct 13 21:32:28 2026 -0600
+Date:   2026-10-13 21:32:28 -0600
 
     added gitignore
 
 commit cbf7235e5882c7ae2966cbe691b9451efc734a16
 Author: Aidan Schiefer <aidanschiefer@gmail.com>
-Date:   Tue Oct 13 21:29:31 2026 -0600
+Date:   2026-10-13 21:29:31 -0600
 
     feat: added shell code for TestBoard
 
 commit 95a186ab9b480eb70d2efe14af071bf79c94ea37
 Author: Aidan Schiefer <aidanschiefer@gmail.com>
-Date:   Tue Oct 13 21:22:48 2026 -0600
+Date:   2026-10-13 21:22:48 -0600
 
     feat: shell functionality for TestBoardCell
 
 commit 5d726dfecf4a02260c20bb07f43147cfe5b5fa63
 Author: Aidan Schiefer <aidanschiefer@gmail.com>
-Date:   Tue Oct 13 21:02:36 2026 -0600
+Date:   2026-10-13 21:02:36 -0600
 
     Initial commit with classes and packages
