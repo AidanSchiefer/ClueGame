@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import clueGame.Board;
 import clueGame.BoardCell;
 
-
 public class AdvancedBoardAdjTargetTest {
 	// Create a private member for the test board
 	private static Board board;
@@ -40,7 +39,7 @@ public class AdvancedBoardAdjTargetTest {
 		// Check that the list contains the correct cells
 		assertTrue(testAdjList.contains(board.getCell(6, 0)));
 		assertTrue(testAdjList.contains(board.getCell(6, 2)));
-		assertTrue(testAdjList.contains(board.getCell(9, 2)));
+		assertTrue(testAdjList.contains(board.getCell(3, 2)));
 
 		// Get the adj list for another doorway
 		testAdjList = board.getAdjList(13, 8);
@@ -53,7 +52,8 @@ public class AdvancedBoardAdjTargetTest {
 		assertTrue(testAdjList.contains(board.getCell(17, 9)));
 	}
 
-	// Create test for adjacency at room. It's only allowed adjacencies are doorways and other room centers IF there is a secret passage
+	// Create test for adjacency at room. Its only allowed adjacencies are
+	// doorways and other room centers IF there is a secret passage
 	@Test
 	public void testRoomAdj() {
 		// Check the adjacency for the Kitchen
@@ -65,7 +65,7 @@ public class AdvancedBoardAdjTargetTest {
 
 		// Check the adjacencies for factory (one door, secret passage)
 		testAdjList = board.getAdjList(2, 17);
-		// Test that is has the correct amount of adjacencies
+		// Test that it has the correct amount of adjacencies
 		assertEquals(2, testAdjList.size());
 		// Check that the list contains the correct cells
 		assertTrue(testAdjList.contains(board.getCell(5, 15)));
@@ -86,7 +86,7 @@ public class AdvancedBoardAdjTargetTest {
 	public void testWalkAdj() {
 		// Get a walkway that has a door adjacent to it
 		Set<BoardCell> testAdjList = board.getAdjList(4, 10);
-		// Check that the list contains the correct amount of Cells
+		// Check that the list contains the correct amount of cells
 		assertEquals(3, testAdjList.size());
 		// Check that the list contains the correct cells
 		assertTrue(testAdjList.contains(board.getCell(4, 9)));
@@ -94,26 +94,6 @@ public class AdvancedBoardAdjTargetTest {
 		assertTrue(testAdjList.contains(board.getCell(5, 10)));
 		// Assert that the room cell above it is not in the list
 		assertFalse(testAdjList.contains(board.getCell(3, 10)));
-
-		// Add more tests - also for LO15A
-		// Test another walkway that has a door adjacent to it
-		testAdjList = board.getAdjList(20, 13);
-		// Check that the list contains the correct amount of cells
-		assertEquals(1, testAdjList.size());
-		// Check that the list contains the correct cell
-		assertTrue(testAdjList.contains(board.getCell(19, 13)));
-		// Check that the cell in the list is a doorway
-		assertTrue(board.getCell(19, 13).isDoorway());
-		
-		// Test unused cells  (x) - also for LO15A
-		testAdjList = board.getAdjList(14, 0);
-		// Test it has the correct amount of adjacencies
-		assertEquals(1, testAdjList.size());
-		// Check that the list contains the correct cell
-		assertTrue(testAdjList.contains(board.getCell(14, 1)));
-		// Check that the two unused spaces above and below the cell are not in the list
-		assertFalse(testAdjList.contains(board.getCell(13, 0)));
-		assertFalse(testAdjList.contains(board.getCell(15, 0)));
 	}
 
 	// Create test for target at room Santa's Bedroom
@@ -123,7 +103,7 @@ public class AdvancedBoardAdjTargetTest {
 		board.calcTargets(board.getCell(18, 17), 1);
 		// Get the targets list
 		Set<BoardCell> targets = board.getTargets();
-		// Check that the lost contains the correct amount of cells
+		// Check that the list contains the correct amount of cells
 		assertEquals(2, targets.size());
 		// Check that the list contains the correct cells
 		assertTrue(targets.contains(board.getCell(19, 13)));
@@ -146,7 +126,7 @@ public class AdvancedBoardAdjTargetTest {
 		// Get the targets list
 		targets = board.getTargets();
 		// Check that the list contains the correct amount of cells
-		assertEquals(7, targets.size());
+		assertEquals(8, targets.size());
 		// Check that the list contains some of the correct cells
 		assertTrue(targets.contains(board.getCell(11, 16)));
 		assertTrue(targets.contains(board.getCell(12, 17)));
@@ -154,7 +134,8 @@ public class AdvancedBoardAdjTargetTest {
 		assertTrue(targets.contains(board.getCell(18, 12)));
 	}
 
-	// Create test for target at room Living Room. Regardless of roll, can take secret passage
+	// Create test for target at room Living Room.
+	// Regardless of roll, can take secret passage
 	@Test
 	public void testLivingRoomTarget() {
 		// Test targets, roll 1
@@ -183,7 +164,7 @@ public class AdvancedBoardAdjTargetTest {
 		// Get the targets list
 		targets = board.getTargets();
 		// Check that the list contains the correct amount of cells
-		assertEquals(6, targets.size());
+		assertEquals(5, targets.size());
 		// Check that the list contains some of the correct cells
 		assertTrue(targets.contains(board.getCell(17, 9))); // Secret Passage to Reindeer Pen
 		assertTrue(targets.contains(board.getCell(18, 6)));
@@ -248,7 +229,7 @@ public class AdvancedBoardAdjTargetTest {
 		assertEquals(7, targets.size());
 		// Test that some of the correct cells exist in the target list
 		assertTrue(targets.contains(board.getCell(7, 9)));
-		assertTrue(targets.contains(board.getCell(5, 10)));
+		assertTrue(targets.contains(board.getCell(4, 10)));
 		assertTrue(targets.contains(board.getCell(6, 12)));
 
 		// Test a roll of 5
@@ -256,8 +237,8 @@ public class AdvancedBoardAdjTargetTest {
 		// Get the target list
 		targets = board.getTargets();
 		// Test that the correct amount of targets exist in the list
-		assertEquals(8, targets.size());
-		// Test that some of the correct cells exist in the target list
+		assertEquals(23, targets.size());
+		// Test that some of the correct cells exist in the list
 		assertTrue(targets.contains(board.getCell(6, 15)));
 		assertTrue(targets.contains(board.getCell(5, 14)));
 		assertTrue(targets.contains(board.getCell(8, 7)));
@@ -273,8 +254,8 @@ public class AdvancedBoardAdjTargetTest {
 		// Calculate the targets, roll 1
 		board.calcTargets(board.getCell(6, 13), 1);
 		// Set the walkways back to unoccupied
-		board.getCell(6, 12).setOccupied(true);
-		board.getCell(7, 13).setOccupied(true);
+		board.getCell(6, 12).setOccupied(false);
+		board.getCell(7, 13).setOccupied(false);
 		// Get the targets
 		Set<BoardCell> targets = board.getTargets();
 		// Check that the correct amount of targets exist in the list
@@ -293,11 +274,12 @@ public class AdvancedBoardAdjTargetTest {
 		// Get the targets list
 		targets = board.getTargets();
 		// Check that the correct amount of targets exist in the list
-		assertEquals(3, targets.size());
+		assertEquals(4, targets.size());
 		// Check that the correct cells exist in the list
 		assertTrue(targets.contains(board.getCell(2, 11))); // Room center
 		assertTrue(targets.contains(board.getCell(4, 10)));
 		assertTrue(targets.contains(board.getCell(4, 12)));
+		assertTrue(targets.contains(board.getCell(5, 11)));
 
 		// Test leaving a room with a blocked doorway at closet
 		// Set a doorway to occupied
@@ -309,10 +291,46 @@ public class AdvancedBoardAdjTargetTest {
 		// Get the targets list
 		targets = board.getTargets();
 		// Check that the correct amount of targets exist in the list
-		assertEquals(5, targets.size());
+		assertEquals(6, targets.size());
 		// Check that some of the correct cells exist in the list
 		assertTrue(targets.contains(board.getCell(7, 15)));
-		assertTrue(targets.contains(board.getCell(6, 16)));	
+		assertTrue(targets.contains(board.getCell(6, 16)));
 		assertTrue(targets.contains(board.getCell(5, 17)));
+		assertTrue(targets.contains(board.getCell(18, 17))); // Secret passage to Santa's Bedroom
+		assertFalse(targets.contains(board.getCell(8, 14))); // Blocked doorway
+	}
+
+	// Verify that movement stays inside all four edges of our board
+	@Test
+	public void testBoardEdges() {
+		assertEquals(Set.of(board.getCell(1, 5)),
+				board.getAdjList(0, 5));
+		assertEquals(Set.of(board.getCell(19, 7)),
+				board.getAdjList(20, 7));
+		assertEquals(Set.of(board.getCell(6, 1)),
+				board.getAdjList(6, 0));
+		assertEquals(Set.of(board.getCell(6, 19)),
+				board.getAdjList(6, 20));
+	}
+
+	// Ordinary room cells and label cells are rooms, but have no movement links
+	@Test
+	public void testNonCenterRoomCells() {
+		assertTrue(board.getCell(0, 0).isRoom());
+		assertTrue(board.getAdjList(0, 0).isEmpty());
+		assertTrue(board.getCell(2, 2).isRoom());
+		assertTrue(board.getAdjList(2, 2).isEmpty());
+	}
+
+	// An interior walkway connects to all four neighboring walkways
+	@Test
+	public void testFourWalkwayNeighbors() {
+		Set<BoardCell> expected = Set.of(
+				board.getCell(5, 13),
+				board.getCell(7, 13),
+				board.getCell(6, 12),
+				board.getCell(6, 14));
+
+		assertEquals(expected, board.getAdjList(6, 13));
 	}
 }

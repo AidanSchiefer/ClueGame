@@ -13,7 +13,7 @@ import java.util.HashSet;
 
 public class Board {
 
-	// Member variables - clean up initialization
+	// Member variables
 	private String _clueLayoutCSV;
 	private String _clueSetupTXT;
 	private int _numRows;
@@ -168,6 +168,7 @@ public class Board {
 
 				BoardCell cell = new BoardCell(row, col);
 				cell.setInitial(initial);
+				cell.setRoom(initial != 'W' && initial != 'X');
 				_board[row][col] = cell;
 
 				// A single-character entry has no additional properties
@@ -212,7 +213,6 @@ public class Board {
 					}
 
 					cell.setRoomCenter(true);
-					cell.setRoom(true);
 					room.setCenterCell(cell);
 					break;
 
@@ -235,15 +235,10 @@ public class Board {
 				if ((cell.isLabel() || cell.isRoomCenter() || cell.getSecretPassage() != '\0') && (initial == 'W' || initial == 'X')) {
 					throw new BadConfigFormatException("Room markers must be inside rooms.");
 				}
-				
-				// Add room logic to add center cell and label cell for each room
 			}
 		}
 	}
 
-	/*
-	 * initialize the board (since we are using singleton pattern)
-	 */
 	/*
 	 * initialize the board (since we are using singleton pattern)
 	 */
@@ -261,6 +256,7 @@ public class Board {
 			// Call loadSetupConfig and loadLayoutConfig
 			loadSetupConfig();
 			loadLayoutConfig();
+			calculateAdjacencies();
 		}
 		catch (FileNotFoundException | BadConfigFormatException e) {
 			// Display a useful message if initialization fails
@@ -291,8 +287,8 @@ public class Board {
 
 		// Loop through each cell in the adjacency list
 		for (BoardCell adjCell: adjList){
-			// If already in visited list or the cell is occupied, skip the rest of the loop
-			if (_visited.contains(adjCell) || adjCell.getOccupied()) {
+			// Skip visited cells and occupied walkways; rooms can hold multiple players.
+			if (_visited.contains(adjCell) || (adjCell.getOccupied() && !adjCell.isRoom())) {
 				continue;
 			}
 
@@ -354,4 +350,71 @@ public class Board {
 	public int getNumRooms() {
 		return roomMap.size();
 	}
+
+	// Build movement connections after every cell and room center is loaded.
+	private void calculateAdjacencies() {
+		for (int row = 0; row < _numRows; row++) {
+			for (int col = 0; col < _numColumns; col++) {
+				BoardCell cell = getCell(row, col);
+
+				if (cell.getInitial() == 'W') {
+					addWalkwayNeighbor(cell, row - 1, col);
+					addWalkwayNeighbor(cell, row + 1, col);
+					addWalkwayNeighbor(cell, row, col - 1);
+					addWalkwayNeighbor(cell, row, col + 1);
+
+					if (cell.isDoorway()) {
+						connectDoorToRoom(cell);
+					}
+				}
+
+				if (cell.getSecretPassage() != '\0') {
+					BoardCell source = getRoom(cell).getCenterCell();
+					BoardCell destination =
+						getRoom(cell.getSecretPassage()).getCenterCell();
+					source.addAdjacency(destination);
+				}
+			}
+		}
+	}
+
+	// Add an orthogonal neighbor only when it is an in-bounds walkway.
+	private void addWalkwayNeighbor(BoardCell cell, int row, int col) {
+		if (row < 0 || row >= _numRows || col < 0 || col >= _numColumns) {
+			return;
+		}
+
+		BoardCell neighbor = getCell(row, col);
+		if (neighbor.getInitial() == 'W') {
+			cell.addAdjacency(neighbor);
+		}
+	}
+
+	// The arrow identifies the room; movement uses its center, not its wall cell.
+	private void connectDoorToRoom(BoardCell door) {
+		int row = door.getRow();
+		int col = door.getColumn();
+
+		switch (door.getDoorDirection()) {
+		case UP:
+			row--;
+			break;
+		case DOWN:
+			row++;
+			break;
+		case LEFT:
+			col--;
+			break;
+		case RIGHT:
+			col++;
+			break;
+		default:
+			return;
+		}
+
+		BoardCell center = getRoom(getCell(row, col)).getCenterCell();
+		door.addAdjacency(center);
+		center.addAdjacency(door);
+	}
 }
+
