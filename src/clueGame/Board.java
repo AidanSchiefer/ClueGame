@@ -14,16 +14,15 @@ import java.util.HashSet;
 public class Board {
 
 	// Member variables
-	private String _clueLayoutCSV;
-	private String _clueSetupTXT;
-	private int _numRows;
-	private int _numColumns;
-	// Set that contains target cells
-	private Set<BoardCell> _targetCells;
-	// Set that contains the visited cells
-	private Set<BoardCell> _visited;
+	// Variables to hold the name of the config files
+	private String _clueLayoutCSV, _clueSetupTXT;
+	// Number of rows and columns 
+	private int _numRows, _numColumns;
+	// Set that contains target cells and the visited cells
+	private Set<BoardCell> _targetCells, _visited;
 	// Grid for the board
 	private BoardCell[][] _board;
+	// Map for the rooms
 	private Map<Character, Room> roomMap;
 
 	// variable and methods used for singleton pattern
