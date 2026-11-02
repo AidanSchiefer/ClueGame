@@ -51,8 +51,9 @@ public class Board {
 		roomMap = new HashMap<>();
 
 		try (Scanner scanner = new Scanner(new File("data", _clueSetupTXT))) {
-
+			// Loop through the file until you reach the end
 			while (scanner.hasNextLine()) {
+				// Extract the entire line and trim any unnecessary things
 				String line = scanner.nextLine().trim();
 
 				// Skip comments and empty lines
@@ -63,10 +64,12 @@ public class Board {
 				// Separate the entry into its type, name, and initial
 				String[] parts = line.split(",", -1);
 
+				// If the part does not contain 3 pieces, throw the BadConfigFormatException
 				if (parts.length != 3) {
 					throw new BadConfigFormatException("Setup entries must have three values: " + line);
 				}
 
+				// Extract the three pieces of the config (Type, Name, Initial)
 				String type = parts[0].trim();
 				String name = parts[1].trim();
 				String symbol = parts[2].trim();
@@ -80,7 +83,8 @@ public class Board {
 				if (name.isEmpty() || symbol.length() != 1) {
 					throw new BadConfigFormatException("Invalid room name or initial: " + line);
 				}
-
+				
+				// Extract the initial
 				char initial = symbol.charAt(0);
 
 				// Different rooms cannot use the same initial
@@ -92,7 +96,7 @@ public class Board {
 				roomMap.put(initial, new Room(name));
 			}
 		}
-
+		// If the room map is empty, throw a BadConfigFormatException
 		if (roomMap.isEmpty()) {
 			throw new BadConfigFormatException("The setup file contains no rooms or spaces.");
 		}
@@ -111,16 +115,19 @@ public class Board {
 		// Store the rows so we can determine the grid dimensions
 		List<String[]> rows = new ArrayList<>();
 
-		try (Scanner scanner =
-				new Scanner(new File("data", _clueLayoutCSV))) {
+		try (Scanner scanner = new Scanner(new File("data", _clueLayoutCSV))) {
 
+			// Loop through the file until you reach the end
 			while (scanner.hasNextLine()) {
+				// Extract the entire line and trim any excess
 				String line = scanner.nextLine().trim();
 
+				// Check to make sure that the line isn't empty
 				if (line.isEmpty()) {
 					throw new BadConfigFormatException("The layout contains an empty row.");
 				}
 
+				// Split the input into three parts
 				String[] cells = line.split(",", -1);
 
 				// Every row must contain the same number of columns
@@ -128,10 +135,12 @@ public class Board {
 					throw new BadConfigFormatException("All layout rows must have the same number of columns.");
 				}
 
+				// Add the cell to the row ArrayList
 				rows.add(cells);
 			}
 		}
 
+		// If there are no rows in the list, throw an exception
 		if (rows.isEmpty()) {
 			throw new BadConfigFormatException("The layout file is empty.");
 		}
@@ -157,6 +166,7 @@ public class Board {
 					throw new BadConfigFormatException("Invalid layout entry at " + row + ", " + col + ": " + entry);
 				}
 
+				// Extract the initial of the cell
 				char initial = entry.charAt(0);
 				Room room = roomMap.get(initial);
 
