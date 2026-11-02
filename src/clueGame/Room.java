@@ -2,9 +2,10 @@ package clueGame;
 
 public class Room {
 	// Member variables
+	// Variable to hold the name of the room
 	private String _name;
-	private BoardCell _centerCell;
-	private BoardCell _labelCell;
+	// Variables to hold the center cell and label cell of a given room
+	private BoardCell _centerCell, _labelCell;
 
 	// Default constructor
 	public Room() {

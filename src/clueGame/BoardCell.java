@@ -5,16 +5,16 @@ import java.util.Set;
 
 public class BoardCell {
 	// Member variables
-	private int _boardRow;
-	private int _boardColumn;
-	private char _roomInitial;
+	// Row and column for the cell instance
+	private int _boardRow, _boardColumn;
+	// Variable to hold the room initial and secret passage label
+	private char _roomInitial, _secretPassage;
+	// Enum variable to distinguish if a room is a door or not
 	private DoorDirection _doorDirection = DoorDirection.NONE;
-	private boolean _roomLabel;
-	private boolean _roomCenter;
-	private char _secretPassage;
+	// Boolean variables to distinguish if a cell is a room label, a room center, is a room, and is occupied
+	private boolean _roomLabel, _roomCenter, _isRoom, _isOccupied = false;
+	// Set that contains the adjacency list for a given cell instance
 	private Set<BoardCell> _adjacencyList;
-	private boolean _isRoom = false;
-	private boolean _isOccupied = false;
 
 	// Constructor
 	public BoardCell(int row, int column) {
