@@ -86,7 +86,7 @@ public class BoardTestsExp {
 		// Set a basic starting position at (0,0)
 		TestBoardCell cell = board.getCell(0, 0);
 
-		//----- Set roll to 1 then test targets -----
+		//set roll to one and test targets 
 		// Calculate the targets for a roll of 1
 		board.calcTargets(cell, 1);
 
@@ -100,7 +100,7 @@ public class BoardTestsExp {
 		assertTrue(targets1.contains(board.getCell(0, 1)));
 		assertTrue(targets1.contains(board.getCell(1, 0)));
 
-		//----- Set roll to 2 then test targets -----
+		//set roll to 2 and test targets 
 		// Calculate the targets for a roll of 2
 		board.calcTargets(cell, 2);
 
@@ -115,7 +115,7 @@ public class BoardTestsExp {
 		assertTrue(targets2.contains(board.getCell(2, 0)));
 		assertTrue(targets2.contains(board.getCell(1, 1)));
 
-		//----- Set roll to 3 then test targets -----
+		//set roll to 3 and test targets 
 		// Calculate the targets for a roll of 3
 		board.calcTargets(cell, 3);
 
@@ -141,7 +141,7 @@ public class BoardTestsExp {
 		// Set a basic starting position at (0,0)
 		TestBoardCell cell = board.getCell(0, 0);
 
-		//----- Set roll to 4 then test targets -----
+		//set roll to 4 and test targets
 		// Calculate the targets for a roll of 4
 		board.calcTargets(cell, 4);
 
@@ -159,7 +159,7 @@ public class BoardTestsExp {
 		assertTrue(targets4.contains(board.getCell(3, 1)));
 		assertTrue(targets4.contains(board.getCell(0, 2)));
 
-		//----- Set roll to 5 then test targets -----
+		//set roll to 5 and test targets 
 		// Calculate the targets for a roll of 5
 		board.calcTargets(cell, 5);
 
@@ -179,7 +179,7 @@ public class BoardTestsExp {
 		assertTrue(targets5.contains(board.getCell(3, 0)));
 		assertTrue(targets5.contains(board.getCell(3, 2)));
 
-		//----- Set roll to 6 then test targets -----
+		//-set roll to 6 and test targets
 		// Calculate the targets for a roll of 6
 		board.calcTargets(cell, 6);
 
