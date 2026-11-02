@@ -11,7 +11,7 @@ import clueGame.Board;
 public class ExceptionTests {
 	// Verify that malformed configuration files throw the expected exception.
 	@Test
-	public void testBadSetup() throws BadConfigFormatException, FileNotFoundException{
+	public void testBadSetup(){
 		assertThrows(BadConfigFormatException.class, () -> {
 			// Create a test board
 			Board testBoard = Board.getInstance();
@@ -27,7 +27,7 @@ public class ExceptionTests {
 
 	// Verify that malformed configuration files throw the expected exception.
 	@Test
-	public void testBadLayout() throws BadConfigFormatException, FileNotFoundException{
+	public void testBadLayout(){
 		assertThrows(BadConfigFormatException.class, () -> {
 			// Create a test board
 			Board testBoard = Board.getInstance();

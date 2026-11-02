@@ -7,12 +7,8 @@ import java.util.Set;
 public class TestBoard {
 	// Member variables
 	// Set that contains the board
-	private Set<TestBoardCell> _testBoard;
-	// Set that contains target cells
-	private Set<TestBoardCell> _targetCells;
-	// Set that contains the visited cells
-	private Set<TestBoardCell> _visited;
-
+	private Set<TestBoardCell> _testBoard, _targetCells, _visited;
+	
 	// Constructor
 	public TestBoard() {
 		_testBoard = new HashSet<>();

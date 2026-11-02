@@ -6,11 +6,9 @@ import java.util.Set;
 
 public class TestBoardCell {
 	// Member variables
-	private int _boardRow;
-	private int _boardColumn;
+	private int _boardRow, _boardColumn;
 	private Set<TestBoardCell> _adjacencyList;
-	private boolean _isRoom = false;
-	private boolean _isOccupied = false;
+	private boolean _isRoom, _isOccupied;
 
 	// Constructor
 	public TestBoardCell(int row, int column) {
