@@ -24,6 +24,8 @@ public class Board {
 	private BoardCell[][] _board;
 	// Map for the rooms
 	private Map<Character, Room> roomMap;
+	// Variable to hold the solution
+	private Solution _theAnswer;
 
 	// variable and methods used for singleton pattern
 	private static Board theInstance = new Board();
@@ -424,6 +426,11 @@ public class Board {
 		BoardCell center = getRoom(getCell(row, col)).getCenterCell();
 		door.addAdjacency(center);
 		center.addAdjacency(door);
+	}
+	
+	// Deal cards method
+	public void deal() {
+		
 	}
 }
 
