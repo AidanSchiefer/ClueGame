@@ -5,11 +5,11 @@ import java.util.*;
 public abstract class Player {
 	// Member variables
 	// Members for player name and color
-	private String _name, _color;
+	protected String _name, _color;
 	// Variables for row and column
-	private int _row, _column;
+	protected int _row, _column;
 	// Member list for hand of cards
-	private ArrayList<Card> hand;
+	protected ArrayList<Card> hand;
 	
 	// Constructor
 	public Player(String name, String color, int row, int col) {
