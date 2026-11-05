@@ -11,3 +11,17 @@ Room, Pantry, P
 // Other spaces
 Space, Unused, X
 Space, Walkway, W
+// Players
+HPlayer, Santa, Red, 20, 13
+CPlayer, Buddy, Green, 0, 9
+CPlayer, Rudolph, Brown, 20, 7
+CPlayer, Mrs. Claus, Pink, 14, 0
+CPlayer, Elfy, Yellow, 6, 20
+CPlayer, Frosty, Blue, 6, 0
+// Weapons
+Weapon, Candy Cane, none
+Weapon, Gift Wrap, none
+Weapon, Snowball, none
+Weapon, Mini Christmas Tree, none
+Weapon, Candle, none
+Weapon, Malet, none
