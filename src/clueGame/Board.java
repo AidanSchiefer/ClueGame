@@ -1,6 +1,7 @@
 package clueGame;
 
 import java.util.Map;
+import java.util.Random;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -494,11 +495,76 @@ public class Board {
 		center.addAdjacency(door);
 	}
 	
-	// Deal cards method - need to implement
+	// Deal cards method
 	public void deal() {
-		// Deal the solution
+		// Create new lists to break the deck into rooms, players, and weapon decks
+		ArrayList<Card> roomDeck = new ArrayList<Card>();
+		ArrayList<Card> playerDeck = new ArrayList<Card>();
+		ArrayList<Card> weaponsDeck = new ArrayList<Card>();
 		
-		// Deal the players
+		// Loop through the deck and add corresponding cards to the new lists
+		for (Card card: _deck) {
+			if (card.getCardType() == CardType.ROOM) {
+				roomDeck.add(card);
+			}
+			else if (card.getCardType() == CardType.PERSON) {
+				playerDeck.add(card);
+			}
+			else if (card.getCardType() == CardType.WEAPON) {
+				weaponsDeck.add(card);
+			}
+			else {
+				System.out.println("DEAL ERROR: THIS SHOULD NOT HAPPEN, SOMETHING IS WRONG");
+			}
+		}
+		
+		// Deal the solution using random
+		Random roomRand = new Random();
+		Random playerRand = new Random();
+		Random weaponRand = new Random();
+		
+		// Create indexes to randomly choose a random card from each sub-deck
+		int randIndexRoom = roomRand.nextInt(roomDeck.size());
+		int randIndexPlayer = playerRand.nextInt(playerDeck.size());
+		int randIndexWeapon = weaponRand.nextInt(weaponsDeck.size());
+		
+		// Create card objects
+		Card solutionRoom = roomDeck.get(randIndexRoom);
+		Card solutionPlayer = playerDeck.get(randIndexPlayer);
+		Card solutionWeapon = weaponsDeck.get(randIndexWeapon);
+		
+		// Instantiate the solution object
+		_theAnswer = new Solution(solutionRoom, solutionPlayer, solutionWeapon);
+		
+		// Remove the dealt cards from the sub-decks
+		roomDeck.remove(randIndexRoom);
+		playerDeck.remove(randIndexPlayer);
+		weaponsDeck.remove(randIndexWeapon);
+		
+		// Combine the sub-decks into a large sub-deck
+		ArrayList<Card> combinedDealDeck = new ArrayList<Card>(roomDeck);
+		combinedDealDeck.addAll(playerDeck);
+		combinedDealDeck.addAll(weaponsDeck);
+		
+		// Deal the players using random
+		// Loop through the players in the list
+		for (Player player: _players) {
+			// There are 6 players and 18 cards left, each player gets three cards
+			for (int i = 0; i < 3; i++) {
+				// Create a random variable and a generate a random index
+				Random rand = new Random();
+				int randIndex = rand.nextInt(combinedDealDeck.size());
+				
+				// Get the card
+				Card dealtCard = combinedDealDeck.get(randIndex);
+				
+				// Add the card to the current players hand
+				player.updateHand(dealtCard);
+				
+				// Remove the dealt card
+				combinedDealDeck.remove(randIndex);
+			}
+		}
 	}
 }
 

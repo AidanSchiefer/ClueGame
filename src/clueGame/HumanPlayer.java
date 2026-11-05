@@ -9,6 +9,6 @@ public class HumanPlayer extends Player{
 	// Implementation of updateHand
 	@Override
 	public void updateHand(Card card) {
-		return;
+		hand.add(card);
 	}
 }
