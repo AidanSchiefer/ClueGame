@@ -26,6 +26,10 @@ public class Board {
 	private Map<Character, Room> roomMap;
 	// Variable to hold the solution
 	private Solution _theAnswer;
+	// Member ArrayList to hold the players
+	private ArrayList<Player> _players;
+	// Member ArrayList to hold the deck
+	private ArrayList<Card> _deck;
 
 	// variable and methods used for singleton pattern
 	private static Board theInstance = new Board();
@@ -55,6 +59,9 @@ public class Board {
 		try (Scanner scanner = new Scanner(new File("data", _clueSetupTXT))) {
 			// Loop through the file until you reach the end
 			while (scanner.hasNextLine()) {
+				// Create a human player counter
+				int humanPlayerCounter = 0;
+				
 				// Extract the entire line and trim any unnecessary things
 				String line = scanner.nextLine().trim();
 
@@ -67,18 +74,67 @@ public class Board {
 				String[] parts = line.split(",", -1);
 
 				// If the part does not contain 3 pieces, throw the BadConfigFormatException
-				if (parts.length != 3) {
-					throw new BadConfigFormatException("Setup entries must have three values: " + line);
-				}
+//				if (parts.length != 3) {
+//					throw new BadConfigFormatException("Setup entries must have three values: " + line);
+//				}
 
 				// Extract the three pieces of the config (Type, Name, Initial)
 				String type = parts[0].trim();
 				String name = parts[1].trim();
 				String symbol = parts[2].trim();
-
-				// Only Room and Space are valid setup types
-				if (!type.equals("Room") && !type.equals("Space")) {
+				
+				// Only Room, HPlayer, CPlayer, Weapon and Space are valid setup types
+				if (!type.equals("Room") && !type.equals("Space") && !type.equals("HPlayer") && !type.equals("CPlayer") && !type.equals("Weapon")) {
 					throw new BadConfigFormatException( "Unknown setup type: " + type);
+				}
+				
+				// Check if the type is a human player
+				if (type.equals("HPlayer")) {
+					// Change the symbol variable to be color
+					String color = symbol;
+					
+					// Extract the row and column
+					int row = Integer.parseInt(parts[3].trim());
+					int column = Integer.parseInt(parts[4].trim());
+					
+					// Add the human player to the players list
+					_players.add(new HumanPlayer(name, color, row, column));
+					
+					// Add the player to the deck as a card
+					_deck.add(new Card(name, CardType.PERSON));
+					
+					// Increase the human player counter
+					humanPlayerCounter++;
+					
+					// continue the loop
+					continue;
+					
+				}// Check if the type is a computer player
+				else if (type.equals("CPlayer")) {
+					// Change the symbol variable to be color
+					String color = symbol;
+					
+					// Extract the row and column
+					int row = Integer.parseInt(parts[3].trim());
+					int column = Integer.parseInt(parts[4].trim());
+					
+					// Add the computer player to the players list
+					_players.add(new ComputerPlayer(name, color, row, column));
+					
+					// Add the player to the deck as a card
+					_deck.add(new Card(name, CardType.PERSON));
+					
+					// Continue the loop
+					continue;
+				}
+				
+				// Check if the type is a weapon
+				if (type.equals("Weapon")) {
+					// Add the weapon to the deck as a card
+					_deck.add(new Card(name, CardType.WEAPON));
+					
+					// Continue the loop
+					continue;
 				}
 
 				// Each entry needs a name and a single-character initial
@@ -257,6 +313,8 @@ public class Board {
 		// Reset movement data for the newly loaded board
 		_targetCells = new HashSet<>();
 		_visited = new HashSet<>();
+		_players = new ArrayList<Player>();
+		_deck = new ArrayList<Card>();
 
 		// Clear the previous grid and dimensions
 		_board = null;
@@ -428,9 +486,11 @@ public class Board {
 		center.addAdjacency(door);
 	}
 	
-	// Deal cards method
+	// Deal cards method - need to implement
 	public void deal() {
+		// Deal the solution
 		
+		// Deal the players
 	}
 }
 
