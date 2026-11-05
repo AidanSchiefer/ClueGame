@@ -55,12 +55,13 @@ public class Board {
 
 		// Reset the room map each time the setup file is loaded
 		roomMap = new HashMap<>();
+		
+		// Create a human player counter
+		int humanPlayerCounter = 0;
 
 		try (Scanner scanner = new Scanner(new File("data", _clueSetupTXT))) {
 			// Loop through the file until you reach the end
 			while (scanner.hasNextLine()) {
-				// Create a human player counter
-				int humanPlayerCounter = 0;
 				
 				// Extract the entire line and trim any unnecessary things
 				String line = scanner.nextLine().trim();
@@ -90,6 +91,11 @@ public class Board {
 				
 				// Check if the type is a human player
 				if (type.equals("HPlayer")) {
+					// Check if parts[3] and parts[4] are null, Throw if so
+					if (parts[3] == null || parts[4] == null) {
+						throw new BadConfigFormatException("Invalid setup for human player: missing row and column fields");
+					}
+					
 					// Change the symbol variable to be color
 					String color = symbol;
 					
@@ -105,12 +111,14 @@ public class Board {
 					
 					// Increase the human player counter
 					humanPlayerCounter++;
-					
-					// continue the loop
-					continue;
-					
-				}// Check if the type is a computer player
+				}
+				// Check if the type is a computer player
 				else if (type.equals("CPlayer")) {
+					// Check if parts[3] and parts[4] are null, Throw if so
+					if (parts[3] == null || parts[4] == null) {
+						throw new BadConfigFormatException("Invalid setup for computer player: missing row and column fields");
+					}
+					
 					// Change the symbol variable to be color
 					String color = symbol;
 					
@@ -123,40 +131,40 @@ public class Board {
 					
 					// Add the player to the deck as a card
 					_deck.add(new Card(name, CardType.PERSON));
-					
-					// Continue the loop
-					continue;
 				}
-				
 				// Check if the type is a weapon
-				if (type.equals("Weapon")) {
+				else if (type.equals("Weapon")) {
 					// Add the weapon to the deck as a card
 					_deck.add(new Card(name, CardType.WEAPON));
+				} 
+				// Else, the input is a room
+				else {
+					// Each entry needs a name and a single-character initial
+					if (name.isEmpty() || symbol.length() != 1) {
+						throw new BadConfigFormatException("Invalid room name or initial: " + line);
+					}
 					
-					// Continue the loop
-					continue;
+					// Extract the initial
+					char initial = symbol.charAt(0);
+	
+					// Different rooms cannot use the same initial
+					if (roomMap.containsKey(initial)) {
+						throw new BadConfigFormatException("Duplicate room initial: " + initial);
+					}
+	
+					// Store the room using its initial as the key
+					roomMap.put(initial, new Room(name));
 				}
-
-				// Each entry needs a name and a single-character initial
-				if (name.isEmpty() || symbol.length() != 1) {
-					throw new BadConfigFormatException("Invalid room name or initial: " + line);
-				}
-				
-				// Extract the initial
-				char initial = symbol.charAt(0);
-
-				// Different rooms cannot use the same initial
-				if (roomMap.containsKey(initial)) {
-					throw new BadConfigFormatException("Duplicate room initial: " + initial);
-				}
-
-				// Store the room using its initial as the key
-				roomMap.put(initial, new Room(name));
 			}
 		}
 		// If the room map is empty, throw a BadConfigFormatException
 		if (roomMap.isEmpty()) {
 			throw new BadConfigFormatException("The setup file contains no rooms or spaces.");
+		}
+		
+		// If the human player counter is over 1, throw a BadConfigFormatException
+		if (humanPlayerCounter > 1) {
+			throw new BadConfigFormatException("There is more than one human player");
 		}
 	}
 
