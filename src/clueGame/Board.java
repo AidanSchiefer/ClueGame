@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Collections;
 
 
 public class Board {
@@ -155,6 +156,11 @@ public class Board {
 	
 					// Store the room using its initial as the key
 					roomMap.put(initial, new Room(name));
+					
+					// Only real rooms become cards
+					if (type.equals("Room")) {
+						_deck.add(new Card(name, CardType.ROOM));
+					}
 				}
 			}
 		}
@@ -548,22 +554,20 @@ public class Board {
 		
 		// Deal the players using random
 		// Loop through the players in the list
-		for (Player player: _players) {
-			// There are 6 players and 18 cards left, each player gets three cards
-			for (int i = 0; i < 3; i++) {
-				// Create a random variable and a generate a random index
-				Random rand = new Random();
-				int randIndex = rand.nextInt(combinedDealDeck.size());
-				
-				// Get the card
-				Card dealtCard = combinedDealDeck.get(randIndex);
-				
-				// Add the card to the current players hand
-				player.updateHand(dealtCard);
-				
-				// Remove the dealt card
-				combinedDealDeck.remove(randIndex);
-			}
+		
+		// Shuffle the combined deck using collections shuffle method
+		Collections.shuffle(combinedDealDeck);
+		
+		// Create a counter
+		int i = 0;
+		
+		// Loop until the combined deck is empty
+		while (!combinedDealDeck.isEmpty()) {
+			// Update the players hand without looping through the list
+			_players.get(i % _players.size()).updateHand(combinedDealDeck.remove(0));
+			
+			// Increment the counter
+			i++;
 		}
 	}
 	
