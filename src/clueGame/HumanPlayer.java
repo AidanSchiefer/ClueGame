@@ -19,6 +19,11 @@ public class HumanPlayer extends Player{
 		return _name;
 	}
 	
+	// Getter method for the color
+	public String getColor() {
+		return _color;
+	}
+	
 	// Getter method for the row
 	public int getRow() {
 		return _row;

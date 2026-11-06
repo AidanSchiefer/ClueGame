@@ -22,4 +22,19 @@ public abstract class Player {
 	
 	// Abstract method for updateHand
 	public abstract void updateHand(Card card);
+	
+	// Getter method for the name
+	public abstract String getName();
+	
+	// Getter method for the row
+	public abstract int getRow();
+	
+	// Getter method for the column
+	public abstract int getColumn();
+	
+	// Getter method for the players hand
+	public abstract ArrayList<Card> getHand();
+	
+	// Getter method for the color
+	public abstract String getColor();
 }
