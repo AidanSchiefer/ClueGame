@@ -566,5 +566,20 @@ public class Board {
 			}
 		}
 	}
+	
+	// Getter method for the player list
+	public ArrayList<Player> getPlayers(){
+		return _players;
+	}
+	
+	// Getter method for the deck
+	public ArrayList<Card> getDeck(){
+		return _deck;
+	}
+	
+	// Getter method for the answer
+	public Solution getTheAnswer() {
+		return _theAnswer;
+	}
 }
 
