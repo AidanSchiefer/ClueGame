@@ -16,7 +16,7 @@ public class Card {
 	// Equals method
 	public boolean equals(Card target) {
 		// If the two cards equal each other, return true
-		if ((this._cardName == target.getCardName()) && (this._cardType == target.getCardType())) {
+		if ((this._cardName.equals(target.getCardName())) && (this._cardType == target.getCardType())) {
 			return true;
 		}
 		return false;
