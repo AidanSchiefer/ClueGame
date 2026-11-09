@@ -601,12 +601,18 @@ public class Board {
 	}
 	
 	// Method to handle a suggestion
-	public Card handleSuggestion() {
+	public Card handleSuggestion(Card player, Card weapon, Card room) {
 		// Loop through all of the players
-		
-		// See if they can dispute the suggestions
-		
-		// Return null if no player can dispute, otherwise return the first card that disputed the suggestion
+		for (Player currentPlayer: _players) {
+			// See if they can dispute the suggestions
+			Card disputedCard = currentPlayer.disproveSuggestion(player, weapon, room);
+			
+			// If the player returned a card that can be disputed, return that card
+			if (disputedCard != null) {
+				return disputedCard;
+			}
+		}
+		// Return null if no player can dispute
 		return null;
 	}
 }

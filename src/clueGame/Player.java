@@ -37,4 +37,36 @@ public abstract class Player {
 	
 	// Getter method for the color
 	public abstract String getColor();
+	
+	// Method to dispute a suggestion
+	public Card disproveSuggestion(Card player, Card weapon, Card room) {
+		// Create a temporary list to hold possible suggestions
+		ArrayList<Card> possibleSuggestions = new ArrayList<Card>();
+		
+		// Loop through the players hand
+		for (Card card: hand) {
+			if (card == player || card == weapon || card == room) {
+				possibleSuggestions.add(card);
+			}
+		}
+		
+		// If the length is greater than 1, return a random index
+		if (possibleSuggestions.size() > 1) {
+			// Create a random object
+			Random rand = new Random();
+			
+			// Generate a random index
+			int randIndex = rand.nextInt(possibleSuggestions.size());
+			
+			// Return the random index
+			return possibleSuggestions.get(randIndex);
+		}
+		// Else if the length is 1, return the index
+		else if (possibleSuggestions.size() == 1) {
+			return possibleSuggestions.get(0);
+		}
+		
+		// Neither condition was met, return null
+		return null;
+	}
 }
