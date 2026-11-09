@@ -585,5 +585,29 @@ public class Board {
 	public Solution getTheAnswer() {
 		return _theAnswer;
 	}
+	
+	// Method to check an accusation
+	public boolean checkAccusation(Card player, Card weapon, Card room) {
+		// Check the answers and only return true if all solution conditions are correct
+		if (_theAnswer.getPersonSolution() == player) {
+			if (_theAnswer.getWeaponSolution() == weapon) {
+				if (_theAnswer.getRoomSolution() == room) {
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
+	
+	// Method to handle a suggestion
+	public Card handleSuggestion() {
+		// Loop through all of the players
+		
+		// See if they can dispute the suggestions
+		
+		// Return null if no player can dispute, otherwise return the first card that disputed the suggestion
+		return null;
+	}
 }
 

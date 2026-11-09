@@ -1,3 +1,88 @@
+commit 5a1a77673616dcef933c215bcb935160250d9f76
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Thu Nov 5 19:39:45 2026 -0700
+
+    Fixed a bug in Card .equals()
+
+commit 9b0798cf8fd1d5dda68a8c05a071efbae1787a5d
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Thu Nov 5 19:35:05 2026 -0700
+
+    Updated the deal method to be cleaner and added missing functionality in loadSetupConfig
+
+commit 1c3776a0fd8396b74544a8fb5793487f7d6f5f6b
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Thu Nov 5 19:16:23 2026 -0700
+
+    Added more getter methods
+
+commit 2fe2f95e334bd12b17585b66f16c554657b68418
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Thu Nov 5 19:10:58 2026 -0700
+
+    Added getters for Board, HumanPlayer, and ComputerPlayer
+
+commit b65d1ed47a1afef7f674a4161503d2158e915e8e
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Thu Nov 5 09:55:29 2026 -0700
+
+    Implemented deal method - to be tested
+
+commit 0c16b51189a1961942b05cf783492659aacd51bc
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Thu Nov 5 08:40:01 2026 -0700
+
+    Added more exception handling and updated logic for loadSetupConfig
+
+commit c8ecd610cf75661096018270c1a14b663158b990
+Author: Chris <chuss689@gmail.com>
+Date:   Wed Nov 4 20:25:34 2026 -0700
+
+    editted test
+
+commit 12fad3c6efe586c69d5c8414cf11719e4b33c0f8
+Merge: 8af45f5 01df760
+Author: Chris <chuss689@gmail.com>
+Date:   Wed Nov 4 20:15:33 2026 -0700
+
+    Merge branch 'main' of https://github.com/AidanSchiefer/ClueGame.git into main
+
+commit 8af45f53ccc9d2147e669db927c6160937db6107
+Author: Chris <chuss689@gmail.com>
+Date:   Wed Nov 4 20:15:18 2026 -0700
+
+    created tests
+
+commit 01df7602bdeb40c62a4d2559636b9df79c6e1980
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Wed Nov 4 19:40:44 2026 -0700
+
+    Added player and weapon setup details and implementd setup logic for players and weapons
+
+commit feb2f2e23cf1ee22a636dd80d01d3e913101bd08
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Tue Nov 3 09:23:49 2026 -0700
+
+    Added initial implementation of updateHand for ComputerPlayer
+
+commit ac7d3d325223b2195a8559a3be3827d70512f576
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Tue Nov 3 08:39:30 2026 -0700
+
+    Added abstract player and child classes
+
+commit 3ad9cfdeabe291a97f180362ca7555e3798fe669
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Tue Nov 3 08:25:45 2026 -0700
+
+    Creaded Solution class and relavent dependencies
+
+commit ab7f7d8d059f43a24ad742eb842ac57e8e23f7eb
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Mon Nov 2 20:42:49 2026 -0700
+
+    Added empty deal method, added CardType Enum, and added Card class with functionality
+
 commit ec58c4f6c979e426588a890df7b39c7b7e3dbb8f
 Author: Aidan Schiefer <aidanschiefer@gmail.com>
 Date:   Mon Nov 2 12:46:54 2026 -0700
