@@ -10,10 +10,13 @@ public abstract class Player {
 	protected int _row, _column;
 	// Member list for hand of cards
 	protected ArrayList<Card> hand;
+	// Set of seen cards
+	Set<Card> _seenCards;
 	
 	// Constructor
 	public Player(String name, String color, int row, int col) {
 		hand = new ArrayList<Card>();
+		_seenCards = new HashSet<Card>();
 		_name = name;
 		_color = color;
 		_row = row;
