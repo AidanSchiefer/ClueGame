@@ -11,7 +11,7 @@ public abstract class Player {
 	// Member list for hand of cards
 	protected ArrayList<Card> hand;
 	// Set of seen cards
-	Set<Card> _seenCards;
+	protected Set<Card> _seenCards;
 	
 	// Constructor
 	public Player(String name, String color, int row, int col) {

@@ -16,6 +16,10 @@ public class ComputerPlayer extends Player{
 		hand.add(card);
 	}
 	
+	public void updateSeen(Card card) {
+		_seenCards.add(card);
+	}
+	
 	// Getter method for the name
 	public String getName() {
 		return _name;
@@ -43,7 +47,66 @@ public class ComputerPlayer extends Player{
 	
 	// Method to create a suggestion
 	public Solution createSuggestion() {
-		return null;
+		// Get the instance of board
+		Board board = Board.getInstance();
+		
+		// Get the deck of cards from the board
+		ArrayList<Card> cardDeck = board.getDeck();
+		
+		// Get the cell the player is in
+		BoardCell playerCell = board.getCell(_row, _column);
+		
+		// Get the room name
+		String roomName = board.getRoom(playerCell).getName();
+		Card roomCard = null;
+		
+		// Find the corresponding room card
+		for (Card card: cardDeck) {
+			if (roomName.equals(card.getCardName())) {
+				roomCard = card;
+			}
+		}
+		
+		// Extract the weapons from the deck - ignore weapon if seen
+		ArrayList<Card> weaponCards = new ArrayList<Card>();
+		
+		for (Card card: cardDeck) {
+			if (!(_seenCards.contains(card)) && card.getCardName().equals("Weapon")) {
+				weaponCards.add(card);
+			}
+		}
+		
+		// Extract the players from the deck - ignore player if seen
+		ArrayList<Card> playerCards = new ArrayList<Card>();
+		
+		for (Card card: cardDeck) {
+			if (!(_seenCards.contains(card)) && card.getCardName().equals("Player")) {
+				playerCards.add(card);
+			}
+		}
+		
+		// Create a random object for player and weapons
+		Random randWeapon = new Random();
+		Random randPlayer = new Random();
+		
+		// Generate random indices
+		int randWeaponIndex = randWeapon.nextInt(weaponCards.size());
+		int randPlayerIndex = randPlayer.nextInt(playerCards.size());
+		
+		// Store the randomly selected cards names
+		Card weaponCard = weaponCards.get(randWeaponIndex);
+		Card playerCard = playerCards.get(randPlayerIndex);
+		
+		// Create the solution object
+		Solution suggestion = new Solution(roomCard, playerCard, weaponCard);
+		
+		// Add room card, player card, and weapon card to the seen list
+		_seenCards.add(roomCard);
+		_seenCards.add(playerCard);
+		_seenCards.add(weaponCard);
+		
+		// Return the suggestion
+		return suggestion;
 	}
 	
 	// Method to select a target
