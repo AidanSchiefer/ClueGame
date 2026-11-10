@@ -600,12 +600,25 @@ public class Board {
 		return false;
 	}
 	
-	// Method to handle a suggestion
+	// Overloaded handleSuggestion method to start from player one
 	public Card handleSuggestion(Card player, Card weapon, Card room) {
-		// Loop through all of the players
-		for (Player currentPlayer: _players) {
-			// See if they can dispute the suggestions
-			Card disputedCard = currentPlayer.disproveSuggestion(player, weapon, room);
+		return handleSuggestion(player, weapon, room, -1);
+	}
+	
+	// Method to handle a suggestion
+	public Card handleSuggestion(Card player, Card weapon, Card room, int suggesterIndex) {
+		// Loop through all of the players, starting with the player after the suggester
+		for (int i = 1; i <= _players.size(); i++) {
+			// Calculate the player index
+			int currentIndex = (suggesterIndex + i) % _players.size();
+			
+			// A suggester cannot disprove themself
+			if (currentIndex == suggesterIndex) {
+				continue;
+			}
+			
+			// See if the current player can dispute their suggestion
+			Card disputedCard = _players.get(currentIndex).disproveSuggestion(player, weapon, room);
 			
 			// If the player returned a card that can be disputed, return that card
 			if (disputedCard != null) {
