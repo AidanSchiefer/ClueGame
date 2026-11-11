@@ -71,7 +71,8 @@ public class ComputerPlayer extends Player{
 		ArrayList<Card> weaponCards = new ArrayList<Card>();
 		
 		for (Card card: cardDeck) {
-			if (!(_seenCards.contains(card)) && card.getCardName().equals("Weapon")) {
+			if (!(_seenCards.contains(card)) && card.getCardType() == CardType.WEAPON && !hand.contains(card)) {
+				
 				weaponCards.add(card);
 			}
 		}
@@ -80,7 +81,7 @@ public class ComputerPlayer extends Player{
 		ArrayList<Card> playerCards = new ArrayList<Card>();
 		
 		for (Card card: cardDeck) {
-			if (!(_seenCards.contains(card)) && card.getCardName().equals("Player")) {
+			if (!(_seenCards.contains(card)) && card.getCardType() == CardType.PERSON && !hand.contains(card)) {
 				playerCards.add(card);
 			}
 		}
@@ -114,42 +115,50 @@ public class ComputerPlayer extends Player{
 		// Get the board instance
 		Board board = Board.getInstance();
 		
-		// Create a list for tracking the necessary targets
-		ArrayList<BoardCell> necessaryTargets = new ArrayList<BoardCell>();
+		// Create a random object
+		Random rand = new Random();
+		
+		// If there are no targets, there is nothing to select, return null
+		if (targets.isEmpty()) {
+			return null;
+		}
+		
+		// Create a list to track the rooms that have not been seen
+		ArrayList<BoardCell> unseenRooms = new ArrayList<BoardCell>();
 		
 		// Loop through the targets list
 		for (BoardCell cell: targets) {
-			// If the target is a room and is not in the seen list, add to the list
+			// Check to see if a cell is a room
 			if (cell.isRoom()) {
-				Room cellRoom = board.getRoom(cell.getInitial());
+				// Extract the room name
+				String roomName = board.getRoom(cell.getInitial()).getName();
 				
-				// Loop through the seen list
+				// Create a boolean to track if a room is seen
+				boolean roomSeen = false;
+				
+				// Loop through the seen list to see if the room has been seen
 				for (Card seen: _seenCards) {
-					// If the room is not in the seen list, add it to the list
-					if (!cellRoom.getName().equals(seen.getCardName())) {
-						necessaryTargets.add(cell);
+					if (roomName.equals(seen.getCardName())) {
+						roomSeen = true;
 					}
+				}
+				
+				// Only add the room to the list if it has not been seen
+				if (!roomSeen) {
+					unseenRooms.add(cell);
 				}
 			}
 		}
 		
-		// If the size of necessaryTargets is greater than 1, return a random index
-		if (necessaryTargets.size() > 1) {
-			// Create a random variable
-			Random rand = new Random();
-			
-			// Generate a random index
-			int randIndex = rand.nextInt(necessaryTargets.size());
-			
-			// Return the random index
-			return necessaryTargets.get(randIndex);
-		}
-		// Else if the size of necessary targets is 1, return the target
-		else if (necessaryTargets.size() == 1) {
-			return necessaryTargets.get(0);
+		// If there are unseen rooms, randomly choose one, then return it
+		if (unseenRooms.size() > 0) {
+			int randomIndex = rand.nextInt(unseenRooms.size());
+			return unseenRooms.get(randomIndex);
 		}
 		
-		// Neither condition was met, return null
-		return null;
+		// Otherwise, randomly choose from all targets
+		ArrayList<BoardCell> allTargets = new ArrayList<BoardCell>(targets);
+		int randomIndex = rand.nextInt(allTargets.size());
+		return allTargets.get(randomIndex);
 	}
 }
