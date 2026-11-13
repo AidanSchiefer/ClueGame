@@ -1,3 +1,39 @@
+commit 983e295326fe1fd7483e51ee0c5dcdc737736d22
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Mon Nov 9 19:33:41 2026 -0700
+
+    Updated bugs in selectTarget, createSuggestion, and handleSuggestion to get tests passing
+
+commit 9d8194f8bde65bbd26516b585255bb0e01cfb8fb
+Author: Chris <chuss689@gmail.com>
+Date:   Mon Nov 9 17:55:38 2026 -0700
+
+    created tests
+
+commit 8b8e94d6ed6a9037c56a454b63ea56b6bf393361
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Mon Nov 9 13:23:27 2026 -0700
+
+    Implemented createSuggestion
+
+commit e7ab512562c4a2c333e14c45b8528e31cc46bcc8
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Mon Nov 9 10:43:27 2026 -0700
+
+    Implemented selectTarget
+
+commit 546996d22dd5b46b628ed778d8f38222d43322ce
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Mon Nov 9 10:10:52 2026 -0700
+
+    Implemented disproveSuggestion and handleSuggestion
+
+commit 3e8c60f23bf7b8668877b437274f2af0a7d06b0f
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Mon Nov 9 09:47:44 2026 -0700
+
+    Implemented the checkAccusation method and created shell setup for handleSuggestion
+
 commit 5a1a77673616dcef933c215bcb935160250d9f76
 Author: Aidan Schiefer <aidanschiefer@gmail.com>
 Date:   Thu Nov 5 19:39:45 2026 -0700
