@@ -39,6 +39,12 @@ public class GameControlPanel extends JPanel{
 		
 		// Add the panel to the frame
 		add(panel);
+		
+		//makes text fields uneditable
+		name.setEditable(false);
+		rowNum.setEditable(false);
+		theGuess.setEditable(false);
+		theGuessResult.setEditable(false);
 	}
 	
 	// Private method to create the top panel
