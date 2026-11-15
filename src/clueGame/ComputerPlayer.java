@@ -3,6 +3,7 @@ package clueGame;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Set;
+import java.awt.Color;
 
 public class ComputerPlayer extends Player{
 	// Constructor
@@ -26,7 +27,7 @@ public class ComputerPlayer extends Player{
 	}
 	
 	// Getter method for the color
-	public String getColor() {
+	public Color getColor() {
 		return _color;
 	}
 	

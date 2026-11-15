@@ -1,11 +1,14 @@
 package clueGame;
 
 import java.util.*;
+import java.awt.Color;
+import java.awt.color.*;
 
 public abstract class Player {
 	// Member variables
 	// Members for player name and color
-	protected String _name, _color;
+	protected String _name;
+	protected Color _color;
 	// Variables for row and column
 	protected int _row, _column;
 	// Member list for hand of cards
@@ -18,7 +21,29 @@ public abstract class Player {
 		hand = new ArrayList<Card>();
 		_seenCards = new HashSet<Card>();
 		_name = name;
-		_color = color;
+		switch (color) {
+			case "Red":
+				_color = Color.red;
+				break;
+			case "Green":
+				_color = Color.green;
+				break;
+			case "Brown":
+				_color = new Color(165, 42, 42);
+				break;
+			case "Pink":
+				_color = Color.pink;
+				break;
+			case "Yellow":
+				_color = Color.yellow;
+				break;
+			case "Blue":
+				_color = Color.blue;
+				break;
+			default:
+				_color = Color.white;
+				break;
+		}
 		_row = row;
 		_column = col;
 	}
@@ -39,7 +64,7 @@ public abstract class Player {
 	public abstract ArrayList<Card> getHand();
 	
 	// Getter method for the color
-	public abstract String getColor();
+	public abstract Color getColor();
 	
 	// Method to dispute a suggestion
 	public Card disproveSuggestion(Card player, Card weapon, Card room) {

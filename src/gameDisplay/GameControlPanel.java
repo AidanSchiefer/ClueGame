@@ -13,12 +13,15 @@ import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
+import clueGame.*;
+
 public class GameControlPanel extends JPanel{
 	
 	// Private attributes for the JPanel
 	private JTextField name;
 	private JTextField theGuess;
 	private JTextField theGuessResult;
+	private JTextField rowNum;
 	
 	// Control Panel Constructor
 	public GameControlPanel() {
@@ -71,7 +74,7 @@ public class GameControlPanel extends JPanel{
 		JLabel rowLabel = new JLabel("Roll:");
 		
 		// Create a JTextField
-		JTextField rowNum = new JTextField(5);
+		rowNum = new JTextField(5);
 		
 		// Add the row label and text field to subPanel2
 		subPanel2.add(rowLabel);
@@ -133,6 +136,23 @@ public class GameControlPanel extends JPanel{
 		// Return the panel
 		return panel;
 	}
+	
+	// Setter method to set the guess field for the GUI
+	public void setGuess(String guess) {
+		theGuess.setText(guess);
+	}
+	
+	// Setter method to set the guess result field for the GUI
+	public void setGuessResult(String guessResult) {
+		theGuessResult.setText(guessResult);
+	}
+	
+	// Setter method for the player turn and roll
+	public void setTurn(Player player, int roll) {
+		name.setText(player.getName());
+		name.setBackground(player.getColor());
+		rowNum.setText(Integer.toString(roll));
+	}
 
 	
 	public static void main(String[] args) {
@@ -153,5 +173,10 @@ public class GameControlPanel extends JPanel{
 		
 		// Make the frame visible
 		frame.setVisible(true);
+		
+		// Test filling in the data
+		panel.setTurn(new ComputerPlayer("Santa", "Red", 0, 0), 5);
+		panel.setGuess("I have no guess!");
+		panel.setGuessResult("So you have nothing?");
 	}
 }

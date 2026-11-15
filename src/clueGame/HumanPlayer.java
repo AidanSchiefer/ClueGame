@@ -1,5 +1,6 @@
 package clueGame;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 public class HumanPlayer extends Player{
@@ -20,7 +21,7 @@ public class HumanPlayer extends Player{
 	}
 	
 	// Getter method for the color
-	public String getColor() {
+	public Color getColor() {
 		return _color;
 	}
 	
