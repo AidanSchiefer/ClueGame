@@ -18,10 +18,10 @@ import clueGame.*;
 public class GameControlPanel extends JPanel{
 	
 	// Private attributes for the JPanel
-	private JTextField name;
-	private JTextField theGuess;
-	private JTextField theGuessResult;
-	private JTextField rowNum;
+	private JTextField _name;
+	private JTextField _theGuess;
+	private JTextField _theGuessResult;
+	private JTextField _rowNum;
 	
 	// Control Panel Constructor
 	public GameControlPanel() {
@@ -41,10 +41,10 @@ public class GameControlPanel extends JPanel{
 		add(panel);
 		
 		//makes text fields uneditable
-		name.setEditable(false);
-		rowNum.setEditable(false);
-		theGuess.setEditable(false);
-		theGuessResult.setEditable(false);
+		_name.setEditable(false);
+		_rowNum.setEditable(false);
+		_theGuess.setEditable(false);
+		_theGuessResult.setEditable(false);
 	}
 	
 	// Private method to create the top panel
@@ -63,11 +63,11 @@ public class GameControlPanel extends JPanel{
 		JLabel nameLabel = new JLabel("Whose Turn?");
 		
 		// Create a name text field
-		name = new JTextField(20);
+		_name = new JTextField(20);
 		
 		// Add the name label and name to subPanel1
 		subPanel1.add(nameLabel);
-		subPanel1.add(name);
+		subPanel1.add(_name);
 		
 		// Add subPanel1 to panel
 		panel.add(subPanel1);
@@ -80,11 +80,11 @@ public class GameControlPanel extends JPanel{
 		JLabel rowLabel = new JLabel("Roll:");
 		
 		// Create a JTextField
-		rowNum = new JTextField(5);
+		_rowNum = new JTextField(5);
 		
 		// Add the row label and text field to subPanel2
 		subPanel2.add(rowLabel);
-		subPanel2.add(rowNum);
+		subPanel2.add(_rowNum);
 		
 		// Add subPanel2 to panel
 		panel.add(subPanel2);
@@ -116,10 +116,10 @@ public class GameControlPanel extends JPanel{
 		subPanel1.setLayout(new GridLayout(1, 0));
 		
 		// Fill the guess label
-		theGuess = new JTextField(20);
+		_theGuess = new JTextField(20);
 		
 		// Add the label to subPanel1, then set the border
-		subPanel1.add(theGuess);
+		subPanel1.add(_theGuess);
 		subPanel1.setBorder(new TitledBorder(new EtchedBorder(), "Guess"));
 		
 		// Add subPanel1 to the panel
@@ -130,10 +130,10 @@ public class GameControlPanel extends JPanel{
 		subPanel2.setLayout(new GridLayout(1, 0));
 		
 		// Fill the guess result label
-		theGuessResult = new JTextField(20);
+		_theGuessResult = new JTextField(20);
 		
 		// Add the label to subPanel2, then set the border
-		subPanel2.add(theGuessResult);
+		subPanel2.add(_theGuessResult);
 		subPanel2.setBorder(new TitledBorder(new EtchedBorder(), "Guess Result"));
 		
 		// Add subPanel2 to the panel
@@ -145,19 +145,19 @@ public class GameControlPanel extends JPanel{
 	
 	// Setter method to set the guess field for the GUI
 	public void setGuess(String guess) {
-		theGuess.setText(guess);
+		_theGuess.setText(guess);
 	}
 	
 	// Setter method to set the guess result field for the GUI
 	public void setGuessResult(String guessResult) {
-		theGuessResult.setText(guessResult);
+		_theGuessResult.setText(guessResult);
 	}
 	
 	// Setter method for the player turn and roll
 	public void setTurn(Player player, int roll) {
-		name.setText(player.getName());
-		name.setBackground(player.getColor());
-		rowNum.setText(Integer.toString(roll));
+		_name.setText(player.getName());
+		_name.setBackground(player.getColor());
+		_rowNum.setText(Integer.toString(roll));
 	}
 
 	
