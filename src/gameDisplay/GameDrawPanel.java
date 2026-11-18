@@ -14,6 +14,6 @@ import javax.swing.border.TitledBorder;
 
 import clueGame.*;
 
-public class GameDrawPanel {
-
+public class GameDrawPanel extends JPanel {
+	
 }
