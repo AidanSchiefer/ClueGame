@@ -128,8 +128,8 @@ public class BoardCell {
 		
 		// Check to see if the cell is a walkway - Walkway cells are red with a black outline
 		if (_roomInitial == 'W') {
-			// Set the fill color to red
-			g.setColor(Color.RED);
+			// Set the fill color to light red
+			g.setColor(new Color(255, 127, 127));
 			// Draw the square
 			g.fillRect(x,  y, width, height);
 			// Color the outline black
@@ -150,7 +150,7 @@ public class BoardCell {
 						g.fillRect(x,  y, width, thickness);
 						break;
 					case DoorDirection.DOWN:
-						g.fillRect(x,  y + height - thickness, thickness, height);
+						g.fillRect(x,  y + height - thickness, width, thickness);
 						break;
 					case DoorDirection.LEFT:
 						g.fillRect(x, y, thickness, height);
@@ -165,7 +165,7 @@ public class BoardCell {
 		}
 		// Check if the initial is unused
 		else if (_roomInitial == 'X') {
-			g.setColor(Color.BLACK);
+			g.setColor(new Color(0, 100, 0));
 			g.fillRect(x, y, width, height);
 		}
 		// Everything else if a room cell
