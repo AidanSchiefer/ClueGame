@@ -96,7 +96,7 @@ public class GameDrawPanel extends JPanel {
 				
 				// Set frame conditions
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				frame.setSize(400, 250);
+				frame.setSize(450, 350);
 				frame.add(panel);
 				frame.setVisible(true);
 			}

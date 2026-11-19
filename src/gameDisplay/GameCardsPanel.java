@@ -1,6 +1,7 @@
 package gameDisplay;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -45,6 +46,9 @@ public class GameCardsPanel extends JPanel {
 		// Set up the main panel, one row for each category
 		setLayout(new GridLayout(3, 1));
 		setBorder(new TitledBorder("Known Cards"));
+		
+		// Set the dimensions
+		setPreferredSize(new Dimension(150, 25));
 		
 		// Create the category JPanels
 		_peoplePanel = new JPanel();
