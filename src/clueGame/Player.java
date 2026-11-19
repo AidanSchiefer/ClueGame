@@ -19,9 +19,14 @@ public abstract class Player {
 	
 	// Constructor
 	public Player(String name, String color, int row, int col) {
+		// Initialize the lists
 		hand = new ArrayList<Card>();
 		_seenCards = new HashSet<Card>();
+		
+		// Assign the name
 		_name = name;
+		
+		// Based on the input color, set the color of the player
 		switch (color) {
 			case "Red":
 				_color = Color.red;
@@ -45,6 +50,8 @@ public abstract class Player {
 				_color = Color.white;
 				break;
 		}
+		
+		// Assign the row and column
 		_row = row;
 		_column = col;
 	}
@@ -100,11 +107,19 @@ public abstract class Player {
 	}
 	
 	// Method to draw a player object
-	public void Draw(Graphics g, int width, int height) {
-		// Set the player color
-		g.setColor(this._color);
+	public void draw(Graphics g, int width, int height) {
+		// Calculate the pixel position of the player
+		int x = _column * width;
+		int y = _row * height;
 		
-		// Draw the player - should be a circle later
-		g.drawRect(_row, _column, width, height);
+		// Draw the player
+		// Set the fill color
+		g.setColor(_color);
+		// Fill in the circle
+		g.fillOval(x, y, width, height);
+		// Set the border color
+		g.setColor(Color.BLACK);
+		// Draw the outline
+		g.drawOval(x, y, width, height);
 	}
 }

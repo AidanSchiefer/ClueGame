@@ -25,7 +25,7 @@ public class Board {
 	// Grid for the board
 	private BoardCell[][] _board;
 	// Map for the rooms
-	private Map<Character, Room> roomMap;
+	private Map<Character, Room> _roomMap;
 	// Variable to hold the solution
 	private Solution _theAnswer;
 	// Member ArrayList to hold the players
@@ -56,7 +56,7 @@ public class Board {
 	public void loadSetupConfig() throws FileNotFoundException, BadConfigFormatException {
 
 		// Reset the room map each time the setup file is loaded
-		roomMap = new HashMap<>();
+		_roomMap = new HashMap<>();
 		
 		// Create a human player counter
 		int humanPlayerCounter = 0;
@@ -150,12 +150,12 @@ public class Board {
 					char initial = symbol.charAt(0);
 	
 					// Different rooms cannot use the same initial
-					if (roomMap.containsKey(initial)) {
+					if (_roomMap.containsKey(initial)) {
 						throw new BadConfigFormatException("Duplicate room initial: " + initial);
 					}
 	
 					// Store the room using its initial as the key
-					roomMap.put(initial, new Room(name));
+					_roomMap.put(initial, new Room(name));
 					
 					// Only real rooms become cards
 					if (type.equals("Room")) {
@@ -165,7 +165,7 @@ public class Board {
 			}
 		}
 		// If the room map is empty, throw a BadConfigFormatException
-		if (roomMap.isEmpty()) {
+		if (_roomMap.isEmpty()) {
 			throw new BadConfigFormatException("The setup file contains no rooms or spaces.");
 		}
 		
@@ -181,7 +181,7 @@ public class Board {
 			throws FileNotFoundException, BadConfigFormatException {
 
 		// The setup file defines the initials used in the layout
-		if (roomMap == null || roomMap.isEmpty()) {
+		if (_roomMap == null || _roomMap.isEmpty()) {
 			throw new BadConfigFormatException("Load the setup file before the layout file.");
 		}
 
@@ -224,7 +224,7 @@ public class Board {
 		_board = new BoardCell[_numRows][_numColumns];
 
 		// Clear room references from any previously loaded layout
-		for (Room room : roomMap.values()) {
+		for (Room room : _roomMap.values()) {
 			room.setCenterCell(null);
 			room.setLabelCell(null);
 		}
@@ -241,7 +241,7 @@ public class Board {
 
 				// Extract the initial of the cell
 				char initial = entry.charAt(0);
-				Room room = roomMap.get(initial);
+				Room room = _roomMap.get(initial);
 
 				// Every initial must appear in the setup file
 				if (room == null) {
@@ -300,7 +300,7 @@ public class Board {
 
 				default:
 					// Other valid room initials indicate secret passages
-					if (!roomMap.containsKey(modifier) || modifier == 'W' || modifier == 'X') {
+					if (!_roomMap.containsKey(modifier) || modifier == 'W' || modifier == 'X') {
 						throw new BadConfigFormatException("Invalid secret passage destination: " + modifier);
 					}
 
@@ -421,18 +421,18 @@ public class Board {
 	// Getter method that returns the room object if it corresponds to the parameter char
 	public Room getRoom(char symbol) {
 		// Return the desired room based off of symbol
-		return roomMap.get(symbol);
+		return _roomMap.get(symbol);
 	}
 
 	// Getter method that returns the room object if it corresponds to the parameter char
 	public Room getRoom(BoardCell cell) {
 		// Return the desired room based off of symbol
-		return roomMap.get(cell.getInitial());
+		return _roomMap.get(cell.getInitial());
 	}
 	
 	// Getter method to get the number of rooms and spaces in the setup
 	public int getNumRooms() {
-		return roomMap.size();
+		return _roomMap.size();
 	}
 
 	// Build movement connections after every cell and room center is loaded.

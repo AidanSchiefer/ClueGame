@@ -120,28 +120,58 @@ public class BoardCell {
 		_secretPassage = destination;
 	}
 	
-	public void Draw(Graphics g, int width, int height) {
-		//Set the doorway state
-		boolean isDoorway = isDoorway();
+	// Draw method
+	public void draw(Graphics g, int width, int height) {
+		// Calculate the pixel position of the cell
+		int x = _boardColumn * width;
+		int y = _boardRow * height;
 		
-		// TODO: Need to add room label drawing logic
-		
-		// Assign color based on state
-		// (Room = Grey, Walkway = Red, Doorway = Blue, Border = Black)
-		if (isDoorway) {
-			g.setColor(Color.BLUE);
-		}
-		else if (_isRoom || _roomCenter || _roomLabel) {
-			g.setColor(Color.GRAY);
-		}
-		else if (_roomInitial == 'W') {
+		// Check to see if the cell is a walkway - Walkway cells are red with a black outline
+		if (_roomInitial == 'W') {
+			// Set the fill color to red
 			g.setColor(Color.RED);
+			// Draw the square
+			g.fillRect(x,  y, width, height);
+			// Color the outline black
+			g.setColor(Color.BLACK);
+			// Draw the square outline
+			g.drawRect(x,  y, width, height);
+			
+			// Check to see if cell is a doorway
+			if (isDoorway()) {
+				// Set the thickness for the doorways
+				int thickness = Math.max(height / 6, 2);
+				// Set the color of the doorway
+				g.setColor(Color.BLUE);
+				
+				// Based on the door direction, set the orientation 
+				switch (_doorDirection) {
+					case DoorDirection.UP:
+						g.fillRect(x,  y, width, thickness);
+						break;
+					case DoorDirection.DOWN:
+						g.fillRect(x,  y + height - thickness, thickness, height);
+						break;
+					case DoorDirection.LEFT:
+						g.fillRect(x, y, thickness, height);
+						break;
+					case DoorDirection.RIGHT:
+						g.fillRect(x + width - thickness, y, thickness, height);
+						break;
+					default:
+						break;
+				}
+			}
 		}
+		// Check if the initial is unused
 		else if (_roomInitial == 'X') {
 			g.setColor(Color.BLACK);
+			g.fillRect(x, y, width, height);
 		}
-		
-		// Draw the filled rectangle
-		g.fillRect(_boardRow, _boardColumn, width, height);
+		// Everything else if a room cell
+		else {
+			g.setColor(Color.GRAY);
+			g.fillRect(x, y, width, height);
+		}
 	}
 }

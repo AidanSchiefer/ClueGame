@@ -1,5 +1,9 @@
 package clueGame;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+
 public class Room {
 	// Member variables
 	// Variable to hold the name of the room
@@ -40,5 +44,17 @@ public class Room {
 	// Setter method to assign the label cell
 	public void setLabelCell(BoardCell labelCell) {
 		_labelCell = labelCell;
+	}
+	
+	// Draw method to draw the room name
+	public void draw(Graphics g, int width, int height) {
+		// Set the font of the text
+		g.setFont(new Font("Arial", Font.BOLD, 14));
+		
+		// Set the color of the word(s)
+		g.setColor(Color.BLACK);
+		
+		// Draw the string
+		g.drawString(_name, _labelCell.getColumn() * width, _labelCell.getRow() * height + height);
 	}
 }
