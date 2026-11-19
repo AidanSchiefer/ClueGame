@@ -2,6 +2,7 @@ package clueGame;
 
 import java.util.*;
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.color.*;
 
 public abstract class Player {
@@ -96,5 +97,14 @@ public abstract class Player {
 		
 		// Neither condition was met, return null
 		return null;
+	}
+	
+	// Method to draw a player object
+	public void Draw(Graphics g, int width, int height) {
+		// Set the player color
+		g.setColor(this._color);
+		
+		// Draw the player - should be a circle later
+		g.drawRect(_row, _column, width, height);
 	}
 }

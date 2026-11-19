@@ -1,5 +1,7 @@
 package clueGame;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -116,5 +118,30 @@ public class BoardCell {
 	// Setter method to assign the secret passage destination
 	public void setSecretPassage(char destination) {
 		_secretPassage = destination;
+	}
+	
+	public void Draw(Graphics g, int width, int height) {
+		//Set the doorway state
+		boolean isDoorway = isDoorway();
+		
+		// TODO: Need to add room label drawing logic
+		
+		// Assign color based on state
+		// (Room = Grey, Walkway = Red, Doorway = Blue, Border = Black)
+		if (isDoorway) {
+			g.setColor(Color.BLUE);
+		}
+		else if (_isRoom || _roomCenter || _roomLabel) {
+			g.setColor(Color.GRAY);
+		}
+		else if (_roomInitial == 'W') {
+			g.setColor(Color.RED);
+		}
+		else if (_roomInitial == 'X') {
+			g.setColor(Color.BLACK);
+		}
+		
+		// Draw the filled rectangle
+		g.fillRect(_boardRow, _boardColumn, width, height);
 	}
 }
