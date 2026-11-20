@@ -2,6 +2,7 @@ package clueGame;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 
 public class Room {
@@ -48,13 +49,22 @@ public class Room {
 	
 	// Draw method to draw the room name
 	public void draw(Graphics g, int width, int height) {
-		// Set the font of the text
+		// Set the font of the text and scale the font with the size of a cell
+		int fontSize = Math.max(8, Math.min(width, height) / 2);
 		g.setFont(new Font("Arial", Font.BOLD, 14));
 		
 		// Set the color of the word(s)
 		g.setColor(Color.BLACK);
 		
+		// Get the font metrics so the text can be centered
+		FontMetrics metrics = g.getFontMetrics();
+		int textWidth = metrics.stringWidth(_name);
+		
+		// Center the text on the label cell
+		int x = _labelCell.getColumn() * width + width / 2 - textWidth / 2;
+		int y = _labelCell.getRow() * height + height / 2 + metrics.getAscent() / 2;
+		
 		// Draw the string
-		g.drawString(_name, _labelCell.getColumn() * width, _labelCell.getRow() * height + height);
+		g.drawString(_name, x, y);
 	}
 }
