@@ -129,7 +129,7 @@ public class BoardCell {
 		// Check to see if the cell is a walkway - Walkway cells are red with a black outline
 		if (_roomInitial == 'W') {
 			// Set the fill color to light red
-			g.setColor(new Color(255, 127, 127));
+			g.setColor(new Color(220, 20, 60));
 			// Draw the square
 			g.fillRect(x,  y, width, height);
 			// Color the outline black
