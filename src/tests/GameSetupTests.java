@@ -11,9 +11,11 @@ import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Test; 
 
 import clueGame.*;
+
+import java.awt.Color;
 
 /*
  * We need these getters and function
@@ -48,7 +50,16 @@ public class GameSetupTests {
 			String[] entry = expected.get(i);
 			Player player = players.get(i);
 			assertEquals(entry[1], player.getName());
-			assertEquals(entry[2], player.getColor());
+			Color expectedColor = switch (entry[2]) {
+		    case "Red" -> Color.RED;
+		    case "Green" -> Color.GREEN;
+		    case "Brown" -> new Color(165, 42, 42);
+		    case "Pink" -> Color.PINK;
+		    case "Yellow" -> Color.YELLOW;
+		    case "Blue" -> Color.BLUE;
+		    default -> throw new AssertionError("Unexpected player color: " + entry[2]);
+			};
+			assertEquals(expectedColor, player.getColor());
 			assertEquals(Integer.parseInt(entry[4]), player.getRow());
 			assertEquals(Integer.parseInt(entry[5]), player.getColumn());
 			assertTrue(names.add(player.getName()), "Duplicate player");

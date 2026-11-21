@@ -1,3 +1,51 @@
+commit 0a5aff262d0d8251bedbbddeedf0ab67c2e73f06
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Fri Nov 20 17:50:52 2026 -0700
+
+    Changed walkway color
+
+commit a318b15a98fdef92f866003e56e291a778883b0b
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Fri Nov 20 16:33:26 2026 -0700
+
+    Added code to make the room names centered and dynamically size with the window
+
+commit b812d80a2d3b440c50d6c9a40963707c3a56c62e
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Thu Nov 19 15:03:05 2026 -0700
+
+    Added class to display the full clue gui plus minor bug fixes
+
+commit 8fb16556962bbf605a5be0e8ab5603a1efc4ab11
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Thu Nov 19 14:29:58 2026 -0700
+
+    Small bug fixes
+
+commit 4004aefe6b297b2f09a58a60adab424446af5349
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Thu Nov 19 14:20:09 2026 -0700
+
+    Working clue board gui - possible small bug fixes needed
+
+commit c3beabaebc20015e8a1c90ad71a52f1fa691cea9
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Wed Nov 18 19:31:17 2026 -0700
+
+    Initial implementation of board drawing. Still things todo
+
+commit 4b65da69e25ce2c63345db4bbf1ac7f310abbbf0
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Tue Nov 17 21:25:37 2026 -0700
+
+    Initial test skeletons
+
+commit ca4a0108f9225319439b1d96abc50132d6fcec73
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Tue Nov 17 20:59:05 2026 -0700
+
+    Added skeleton code for main gui panel and its JUnit test class
+
 commit 487819ca058de5ec7047c9dc3612ef23849b643f
 Author: Aidan Schiefer <aidanschiefer@gmail.com>
 Date:   Mon Nov 16 17:33:27 2026 -0700
