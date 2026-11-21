@@ -1,3 +1,9 @@
+commit 48d5fc32c716cedc37b415f1dfc9f31880cfa12f
+Author: Chris <chuss689@gmail.com>
+Date:   Fri Nov 20 18:46:36 2026 -0700
+
+    added tests
+
 commit 0a5aff262d0d8251bedbbddeedf0ab67c2e73f06
 Author: Aidan Schiefer <aidanschiefer@gmail.com>
 Date:   Fri Nov 20 17:50:52 2026 -0700
