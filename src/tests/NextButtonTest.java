@@ -41,7 +41,7 @@ public class NextButtonTest {
 		board.startGame();
 	}
 	
-	// Tests
+	//----- Tests -----
 	
 	@Test
 	// Test to ensure that the first turn belongs to the human player
@@ -82,7 +82,74 @@ public class NextButtonTest {
 		assertSame(players.get(0), board.getCurrentPlayer());
 	}
 	
-	// Helper methods
+	@Test
+	// Test if a given roll is valid
+	public void testValidRoll() {
+		// Loop through two rounds of the game
+		for (int i = 0; i < board.getPlayers().size() * 2; i ++) {
+			// get the current roll
+			int roll = board.getCurrentRoll();
+			
+			// Assert that the roll is between 1 and 6
+			assertTrue(roll >= 1 && roll <= 6);
+			
+			// Finish the current turn and move on
+			if (board.getCurrentPlayer() instanceof HumanPlayer) {
+				finishHumanTurn();
+			}
+			board.nextTurn();
+		}
+	}
+	
+	@Test
+	// Test to make sure the human player has targets
+	public void testHumanTargets() {
+		// Ensure the current player is the human player
+		assertTrue(board.getCurrentPlayer() instanceof HumanPlayer);
+		
+		// Test that the target list is not empty
+		assertFalse(board.getTargets().isEmpty());
+	}
+	
+	@Test
+	// Test for a valid click
+	public void testValidClick() {
+		// Get the human player
+		Player human = board.getCurrentPlayer();
+		
+		// Extract a cell that is in the humans target list
+		BoardCell goodCell = board.getTargets().iterator().next();
+		
+		// Assert that the human made the click
+		assertTrue(board.handleHumanClick(goodCell));
+		
+		// Assert that the humans location matches the target cells location
+		assertEquals(goodCell.getRow(), human.getRow());
+		assertEquals(goodCell.getColumn(), human.getColumn());
+		
+		// Ensure the humans turn is over
+		assertTrue(board.isTurnFinished());
+	}
+	
+	@Test
+	// Test to ensure the game cannot advance until the human player moves
+	public void testCannotAdvance() {
+		// Create a human player
+		Player human = board.getCurrentPlayer();
+		
+		// Assert that it is not the mext turn
+		assertFalse(board.nextTurn());
+		
+		// Assert that the player object and current player are the same
+		assertSame(human, board.getCurrentPlayer());
+		
+		// End human turn. Next turn should be available
+		finishHumanTurn();
+		assertTrue(board.nextTurn());
+		assertNotSame(human, board.getCurrentPlayer());
+	}
+	
+	//----- Helper methods -----
 	
 	// Helper to complete the human's turn
 	private void finishHumanTurn() {
