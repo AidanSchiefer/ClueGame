@@ -628,5 +628,17 @@ public class Board {
 		// Return null if no player can dispute
 		return null;
 	}
+	
+	// TODO: startGame() - sets the current player index 0 (the human) and begins their turn
+	
+	// TODO: nextTurn() - returns false if the human hasn't finished. Otherwise advances to the next player and begins their turn
+	
+	// TODO: getCurrentPlayer() - returns the player whose turn it is
+	
+	// TODO: getCurrentRoll() - returns the die roll for this turn (1 - 6)
+	
+	// TODO: isTurnFinished() - false while human still needs to pick a target
+	
+	// TODO: handleClick(BoardCell cell) - If the cell is in getTargets(), move the player (redraw) and returns true. Otherwise returns false and doesn't move
 }
 

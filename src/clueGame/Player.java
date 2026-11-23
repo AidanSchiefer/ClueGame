@@ -122,4 +122,20 @@ public abstract class Player {
 		// Draw the outline
 		g.drawOval(x, y, width, height);
 	}
+	
+	// Method to set the location of the player
+	public void setLocation(int row, int col) {
+		// Get the board instance
+		Board board = Board.getInstance();
+				
+		// Set the old cell to unoccupied
+		board.getCell(_row, _column).setOccupied(false);
+		
+		// Set the row and column to the new values
+		_row = row;
+		_column = col;
+	
+		// Set the player's BoardCell to occupied
+		board.getCell(_row, _column).setOccupied(true);
+	}
 }

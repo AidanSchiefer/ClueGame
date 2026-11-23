@@ -53,6 +53,8 @@ public class GameGUI extends JPanel{
 		repaint();
 	}
 	
+	// I think we can put the next button logic either in this class or the game control panel class
+	
 	// Main method for testing
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
