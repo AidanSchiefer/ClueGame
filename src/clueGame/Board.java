@@ -32,6 +32,11 @@ public class Board {
 	private ArrayList<Player> _players;
 	// Member ArrayList to hold the deck
 	private ArrayList<Card> _deck;
+	
+	private final Random _dice = new Random();
+	private int _currentPlayerIndex = -1;
+	private int _currentRoll;
+	private boolean _turnFinished = true;
 
 	// variable and methods used for singleton pattern
 	private static Board theInstance = new Board();
@@ -325,6 +330,10 @@ public class Board {
 	 * initialize the board (since we are using singleton pattern)
 	 */
 	public void initialize() {
+		
+		_currentPlayerIndex = -1;
+		_currentRoll = 0;
+		_turnFinished = true;
 		// Reset movement data for the newly loaded board
 		_targetCells = new HashSet<>();
 		_visited = new HashSet<>();
@@ -629,16 +638,78 @@ public class Board {
 		return null;
 	}
 	
-	// TODO: startGame() - sets the current player index 0 (the human) and begins their turn
-	
-	// TODO: nextTurn() - returns false if the human hasn't finished. Otherwise advances to the next player and begins their turn
-	
-	// TODO: getCurrentPlayer() - returns the player whose turn it is
-	
-	// TODO: getCurrentRoll() - returns the die roll for this turn (1 - 6)
-	
-	// TODO: isTurnFinished() - false while human still needs to pick a target
-	
-	// TODO: handleClick(BoardCell cell) - If the cell is in getTargets(), move the player (redraw) and returns true. Otherwise returns false and doesn't move
+	// Mark the starting positions before calculating the first player's targets.
+	public void startGame() {
+	    if (_players.isEmpty()) {
+	        return;
+	    }
+
+	    for (Player player : _players) {
+	        getCell(player.getRow(), player.getColumn()).setOccupied(true);
+	    }
+
+	    _currentPlayerIndex = 0;
+	    beginTurn();
+	}
+
+	public boolean nextTurn() {
+	    if (_currentPlayerIndex < 0 || !_turnFinished) {
+	        return false;
+	    }
+
+	    _currentPlayerIndex = (_currentPlayerIndex + 1) % _players.size();
+	    beginTurn();
+	    return true;
+	}
+
+	private void beginTurn() {
+	    Player player = getCurrentPlayer();
+	    _currentRoll = _dice.nextInt(6) + 1;
+	    calcTargets(getCell(player.getRow(), player.getColumn()), _currentRoll);
+
+	    _turnFinished = true;
+	    if (_targetCells.isEmpty()) {
+	        return;
+	    }
+
+	    if (player instanceof ComputerPlayer computer) {
+	        BoardCell target = computer.selectTarget(_targetCells);
+	        computer.setLocation(target.getRow(), target.getColumn());
+	    } else {
+	        _turnFinished = false;
+	    }
+	}
+
+	public Player getCurrentPlayer() {
+	    return _currentPlayerIndex < 0 ? null : _players.get(_currentPlayerIndex);
+	}
+
+	public int getCurrentRoll() {
+	    return _currentRoll;
+	}
+
+	public boolean isTurnFinished() {
+	    return _turnFinished;
+	}
+
+	// A room click resolves to the same center used by the target search.
+	private BoardCell getMoveTarget(BoardCell cell) {
+	    return cell != null && cell.isRoom() ? getRoom(cell).getCenterCell() : cell;
+	}
+
+	public boolean isHumanTarget(BoardCell cell) {
+	    return !_turnFinished && _targetCells.contains(getMoveTarget(cell));
+	}
+
+	public boolean handleClick(BoardCell cell) {
+	    if (!isHumanTarget(cell)) {
+	        return false;
+	    }
+
+	    BoardCell target = getMoveTarget(cell);
+	    getCurrentPlayer().setLocation(target.getRow(), target.getColumn());
+	    _turnFinished = true;
+	    return true;
+	}
 }
 

@@ -15,6 +15,8 @@ import javax.swing.border.TitledBorder;
 
 import clueGame.*;
 
+import javax.swing.JOptionPane;
+
 public class GameControlPanel extends JPanel{
 	
 	// Private attributes for the JPanel
@@ -22,9 +24,15 @@ public class GameControlPanel extends JPanel{
 	private JTextField _theGuess;
 	private JTextField _theGuessResult;
 	private JTextField _rowNum;
+	private final Runnable _redrawBoard;
 	
 	// Control Panel Constructor
 	public GameControlPanel() {
+	    this(() -> {});
+	}
+
+	public GameControlPanel(Runnable redrawBoard) {
+	    _redrawBoard = redrawBoard;
 		// Create a layout with two rows
 		setLayout(new GridLayout(2, 0));
 		
@@ -97,6 +105,7 @@ public class GameControlPanel extends JPanel{
 		
 		// Create a next button
 		JButton nextButton = new JButton("Next");
+		nextButton.addActionListener(event -> advanceTurn());
 		
 		// Add the next button to the panel
 		panel.add(nextButton);
@@ -141,6 +150,28 @@ public class GameControlPanel extends JPanel{
 		
 		// Return the panel
 		return panel;
+	}
+	
+	private void advanceTurn() {
+	    Board board = Board.getInstance();
+	    if (board.getCurrentPlayer() == null) {
+	        return;
+	    }
+
+	    if (!board.nextTurn()) {
+	        JOptionPane.showMessageDialog(this, "Finish your move before clicking Next.",
+	                "Turn In Progress", JOptionPane.WARNING_MESSAGE);
+	        return;
+	    }
+
+	    showCurrentTurn();
+	}
+
+	public void showCurrentTurn() {
+	    Board board = Board.getInstance();
+	    setTurn(board.getCurrentPlayer(), board.getCurrentRoll());
+	    setGuessResult(board.getTargets().isEmpty() ? "No legal moves. Click Next." : "");
+	    _redrawBoard.run();
 	}
 	
 	// Setter method to set the guess field for the GUI

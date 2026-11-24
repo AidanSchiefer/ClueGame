@@ -66,15 +66,10 @@ public class NextButtonTest {
 		finishHumanTurn();
 		
 		// Loop through each computer player
-		for (Player player: players) {
-			// Ensure it is time for the next turn
-			assertTrue(board.nextTurn());
-			
-			// Make sure the current player in the loop and the current player are the same
-			assertSame(player, board.getCurrentPlayer());
-			
-			// Assert that the current player is a computer player
-			assertTrue(board.getCurrentPlayer() instanceof ComputerPlayer);
+		for (int i = 1; i < players.size(); i++) {
+		    assertTrue(board.nextTurn());
+		    assertSame(players.get(i), board.getCurrentPlayer());
+		    assertTrue(board.getCurrentPlayer() instanceof ComputerPlayer);
 		}
 		
 		// Move back around to the human
@@ -94,8 +89,8 @@ public class NextButtonTest {
 			assertTrue(roll >= 1 && roll <= 6);
 			
 			// Finish the current turn and move on
-			if (board.getCurrentPlayer() instanceof HumanPlayer) {
-				finishHumanTurn();
+			if (!board.isTurnFinished()) {
+			    finishHumanTurn();
 			}
 			board.nextTurn();
 		}
@@ -121,7 +116,7 @@ public class NextButtonTest {
 		BoardCell goodCell = board.getTargets().iterator().next();
 		
 		// Assert that the human made the click
-		assertTrue(board.handleHumanClick(goodCell));
+		assertTrue(board.handleClick(goodCell));
 		
 		// Assert that the humans location matches the target cells location
 		assertEquals(goodCell.getRow(), human.getRow());

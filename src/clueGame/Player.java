@@ -125,17 +125,17 @@ public abstract class Player {
 	
 	// Method to set the location of the player
 	public void setLocation(int row, int col) {
-		// Get the board instance
-		Board board = Board.getInstance();
-				
-		// Set the old cell to unoccupied
-		board.getCell(_row, _column).setOccupied(false);
-		
-		// Set the row and column to the new values
-		_row = row;
-		_column = col;
-	
-		// Set the player's BoardCell to occupied
-		board.getCell(_row, _column).setOccupied(true);
+	    Board board = Board.getInstance();
+	    int oldRow = _row;
+	    int oldCol = _column;
+
+	    _row = row;
+	    _column = col;
+
+	    // A shared room stays occupied while any player is still there.
+	    boolean stillOccupied = board.getPlayers().stream()
+	            .anyMatch(player -> player.getRow() == oldRow && player.getColumn() == oldCol);
+	    board.getCell(oldRow, oldCol).setOccupied(stillOccupied);
+	    board.getCell(row, col).setOccupied(true);
 	}
 }

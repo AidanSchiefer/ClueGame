@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.border.TitledBorder;
+import javax.swing.JOptionPane;
 
 import clueGame.*;
 
@@ -57,22 +58,26 @@ public class GameGUI extends JPanel{
 	
 	// Main method for testing
 	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				// Create and load the board
-				Board board = Board.getInstance();
-				board.setConfigFiles("ClueBoardLayout.csv", "ClueSetup.txt"); 
-				board.initialize();
-				
-				HumanPlayer human = new HumanPlayer("Santa", "Red", 0, 0);
-				
-				GameControlPanel control = new GameControlPanel();
-				GameCardsPanel cards = new GameCardsPanel(human);
-				GameDrawPanel boardDraw = new GameDrawPanel();
-				
-				GameGUI gui = new GameGUI(control, cards, boardDraw);
-				gui.displayGUI(gui);
-			}
-		});
+	    SwingUtilities.invokeLater(() -> {
+	        Board board = Board.getInstance();
+	        board.setConfigFiles("ClueBoardLayout.csv", "ClueSetup.txt");
+	        board.initialize();
+
+	        Player human = board.getPlayers().get(0);
+	        GameDrawPanel boardDraw = new GameDrawPanel();
+	        GameControlPanel control = new GameControlPanel(boardDraw::redraw);
+	        GameCardsPanel cards = new GameCardsPanel(human);
+
+	        GameGUI gui = new GameGUI(control, cards, boardDraw);
+	        gui.displayGUI(gui);
+
+	        JOptionPane.showMessageDialog(boardDraw,
+	                "You are " + human.getName()
+	                        + ".\nCan you find the solution before the computer players?",
+	                "Welcome to Clue", JOptionPane.INFORMATION_MESSAGE);
+
+	        board.startGame();
+	        control.showCurrentTurn();
+	    });
 	}
 }
