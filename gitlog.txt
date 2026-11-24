@@ -1,3 +1,33 @@
+commit 0354a7e5f8a485453d3edc692bccb7c7f02f73d7
+Author: Chris <chuss689@gmail.com>
+Date:   Mon Nov 23 21:15:05 2026 -0700
+
+    added methods and edited tests.
+
+commit c4f6a7489c2205af3f240f6a54f1e713c3cb354e
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Mon Nov 23 14:32:47 2026 -0700
+
+    Finished writing out tests
+
+commit ebd2834dc3b4abdd0c051939a3b80cf9e933711b
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Mon Nov 23 12:34:03 2026 -0700
+
+    Wrote two tests and a helper function
+
+commit 365dc932dd6b71bb893a0c2ce69323be84abebf4
+Author: Aidan Schiefer <aidanschiefer@gmail.com>
+Date:   Mon Nov 23 12:04:59 2026 -0700
+
+    Added setLocation for the player class, created test class skeleton, and made TODO notes for new methods in Board
+
+commit 3a063a0b7dc47021415e1df442c95dca1035e4bb
+Author: Chris <chuss689@gmail.com>
+Date:   Fri Nov 20 18:51:44 2026 -0700
+
+    updated gitlog
+
 commit 48d5fc32c716cedc37b415f1dfc9f31880cfa12f
 Author: Chris <chuss689@gmail.com>
 Date:   Fri Nov 20 18:46:36 2026 -0700
